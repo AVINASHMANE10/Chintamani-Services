@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" fill="none">
+  <defs>
+    <linearGradient id="dropW" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#B5E7FF"/>
+      <stop offset="100%" stop-color="#48BFFF"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(4,6)">
+    <path d="M30 2 C30 2, 8 26, 8 42 C8 54.15 17.85 64 30 64 C42.15 64 52 54.15 52 42 C52 26, 30 2, 30 2 Z" fill="url(#dropW)"/>
+    <path d="M20 36 C22 32, 26 30, 30 30" stroke="#0A1628" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    <circle cx="22" cy="44" r="1.6" fill="#0A1628" opacity="0.5"/>
+  </g>
+  <g transform="translate(72,0)" font-family="Georgia, 'Times New Roman', serif">
+    <text x="0" y="32" font-size="22" font-weight="600" fill="#FFFFFF" letter-spacing="0.5">Shree Chintamani</text>
+    <text x="0" y="54" font-size="11" font-weight="500" fill="#B5E7FF" letter-spacing="4" font-family="Arial, sans-serif">S E R V I C E S</text>
+  </g>
+</svg>

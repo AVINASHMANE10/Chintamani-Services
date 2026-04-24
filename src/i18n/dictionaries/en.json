@@ -1,0 +1,213 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact",
+    "getQuote": "Get a Quote"
+  },
+  "hero": {
+    "eyebrow": "ISO 9001:2015 CERTIFIED · PUNE",
+    "title": "Cleaner water.",
+    "titleAccent": "Cleaner buildings.",
+    "titleEnd": "Cleaner standards.",
+    "subtitle": "Professional tank, facade, and deep-cleaning services trusted by homes, offices, and industries across Maharashtra.",
+    "ctaPrimary": "Book an Inspection",
+    "ctaSecondary": "Explore Services",
+    "stat1Value": "15+",
+    "stat1Label": "Years in service",
+    "stat2Value": "1,200+",
+    "stat2Label": "Tanks cleaned yearly",
+    "stat3Value": "ISO",
+    "stat3Label": "9001:2015 certified"
+  },
+  "servicesSection": {
+    "eyebrow": "WHAT WE DO",
+    "title": "Every surface, every system, spotless.",
+    "subtitle": "Six specialised service lines, one standard of care.",
+    "viewAll": "View all services"
+  },
+  "services": {
+    "domestic-water-tank": {
+      "name": "Domestic & Drinking Water Tank Cleaning",
+      "short": "Safe, hygienic water storage for homes and apartments.",
+      "tagline": "Ensuring Safe Water Storage",
+      "overview": "Our expert cleaning process removes sediment, biofilm, and harmful microbes from your overhead and underground water tanks — making sure every drop that reaches your tap is safe.",
+      "features": [
+        "Thorough tank inspection to identify leaks, cracks and contamination",
+        "High-pressure jet washing to dislodge sludge and sediment",
+        "Food-grade sanitisation that eliminates bacteria and pathogens",
+        "Compliance with WHO and IS 10500 drinking water standards",
+        "Before-and-after photo report for your records"
+      ]
+    },
+    "stp-fire-tank": {
+      "name": "STP & Fire Tank Cleaning",
+      "short": "System efficiency for sewage treatment plants and fire reserves.",
+      "tagline": "Ensuring System Efficiency",
+      "overview": "From municipal STPs to building fire reserves — we handle sludge removal, odour control and regulatory-grade inspection so your safety systems are always audit-ready.",
+      "features": [
+        "Complete sludge and grit removal from STP chambers",
+        "Odour neutralisation using enzyme-based treatment",
+        "Fire tank debris clearance and structural inspection",
+        "Safety testing and compliance documentation",
+        "Regulatory adherence for CPCB, MPCB and fire NOC audits"
+      ]
+    },
+    "industrial-cooling-tower": {
+      "name": "Industrial Tank & Cooling Tower Cleaning",
+      "short": "Advanced solutions engineered for industrial-scale needs.",
+      "tagline": "Advanced Solutions for Industrial Needs",
+      "overview": "Tailored cleaning for process tanks, chillers and cooling towers. We optimise heat-transfer efficiency while keeping downtime to the absolute minimum.",
+      "features": [
+        "Scale and biofilm removal from cooling tower fills",
+        "Legionella risk reduction protocols",
+        "Confined-space-entry certified technicians",
+        "Chemical descaling with corrosion-safe formulations",
+        "Minimal downtime — night-shift and weekend scheduling"
+      ]
+    },
+    "facade-cleaning": {
+      "name": "Facade & High-Rise Cleaning",
+      "short": "Glass, stone, and composite facades restored to new.",
+      "tagline": "Elevation-Grade Shine",
+      "overview": "From glass towers to stone-clad heritage structures — our rope-access and aerial-lift teams restore facade clarity while respecting architectural finishes and safety norms.",
+      "features": [
+        "IRATA-trained rope-access technicians",
+        "Cherry-picker and BMU operations for high-rises",
+        "Biodegradable, surface-specific cleaning agents",
+        "Glass, ACP, stone, granite and stucco expertise",
+        "Public liability insurance and zero-incident safety protocol"
+      ]
+    },
+    "deep-cleaning": {
+      "name": "Deep Cleaning for Homes & Offices",
+      "short": "Every inch thoughtfully scrubbed, sanitised and renewed.",
+      "tagline": "A Spotless Shine, Every Time",
+      "overview": "Professional deep cleaning for flats, bungalows and offices — from kitchen degreasing to upholstery care, we use eco-friendly agents and modern equipment.",
+      "features": [
+        "Comprehensive dusting, vacuuming and sanitisation",
+        "Kitchen and pantry degreasing with food-safe products",
+        "Washroom scrubbing and disinfection",
+        "Upholstery, sofa, carpet and mattress shampooing",
+        "Non-toxic, pet-safe eco-friendly cleaning agents"
+      ]
+    },
+    "solar-water-heater": {
+      "name": "Solar Water Heater Service",
+      "short": "Reliable servicing and repairs for all solar systems.",
+      "tagline": "Reliable & Eco-Friendly Solutions",
+      "overview": "Keep your solar water heater running at peak efficiency — we service and repair all brands and configurations, on rooftops across the city.",
+      "features": [
+        "Evacuated tube replacement and realignment",
+        "Tank descaling and inner-liner inspection",
+        "Valve, sensor and controller repair",
+        "Leak detection and plumbing fixes",
+        "Annual maintenance contracts available"
+      ]
+    }
+  },
+  "whyUs": {
+    "eyebrow": "WHY CHOOSE US",
+    "title": "Quiet expertise. Loud results.",
+    "subtitle": "Fifteen years of practice, one standard of care.",
+    "pointsTitle": [
+      "ISO 9001:2015 certified",
+      "Trained & insured crew",
+      "Eco-friendly chemistry",
+      "Transparent reporting"
+    ],
+    "pointsBody": [
+      "A quality management system audited against international benchmarks — the same standard expected of hospitals and food processors.",
+      "Every technician carries safety training, confined-space certification and public liability cover. No contractors, no surprises.",
+      "We specify biodegradable and food-grade agents wherever humans, pets or potable water are involved — without compromising on result.",
+      "Photo and video documentation, water-quality test results, and a digital service report — delivered to your inbox within 24 hours."
+    ]
+  },
+  "process": {
+    "eyebrow": "OUR PROCESS",
+    "title": "Four steps. No surprises.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Inspect",
+        "body": "We visit your site, assess the surface or system, and quote in writing — no call-out fee."
+      },
+      {
+        "n": "02",
+        "title": "Plan",
+        "body": "A scheduled slot that minimises disruption, with clear safety and access arrangements."
+      },
+      {
+        "n": "03",
+        "title": "Execute",
+        "body": "Trained crew, specified chemistry, documented controls. We bring everything we need."
+      },
+      {
+        "n": "04",
+        "title": "Report",
+        "body": "Photo evidence, water-quality results where relevant, and a digital service certificate."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Let's make it spotless.",
+    "subtitle": "Free site inspection, honest quote, work scheduled at your convenience.",
+    "button": "Request a Free Inspection"
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Tell us about your space — we'll reply within one business day.",
+    "name": "Your name",
+    "email": "Email",
+    "phone": "Phone",
+    "service": "Service of interest",
+    "message": "Tell us about your requirement",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "success": "Thank you — we'll be in touch within one business day.",
+    "error": "Something went wrong. Please call us or try again.",
+    "office": "Office Address",
+    "contactDetails": "Contact Details",
+    "hours": "Mon–Sat · 9:00 AM – 7:00 PM"
+  },
+  "footer": {
+    "tagline": "Professional tank, facade and deep-cleaning services. ISO 9001:2015 certified.",
+    "services": "Services",
+    "company": "Company",
+    "about": "About us",
+    "blog": "Blog",
+    "contact": "Contact",
+    "legal": "Legal",
+    "privacy": "Privacy policy",
+    "terms": "Terms of service",
+    "copyright": "© 2026 Shree Chintamani Services. All rights reserved.",
+    "certification": "ISO 9001:2015 · QMS230893"
+  },
+  "about": {
+    "eyebrow": "OUR STORY",
+    "title": "Built on trust, measured in clarity.",
+    "intro": "Shree Chintamani Services was founded on a simple belief: clean water and clean spaces are fundamental rights, not luxuries. Today, we are a team of trained professionals serving homes, commercial buildings, and industrial facilities across Pune and the wider Maharashtra region.",
+    "missionTitle": "Our Mission",
+    "missionBody": "To provide reliable, eco-friendly cleaning solutions that ensure safety, hygiene, and customer satisfaction — contributing to a cleaner, healthier future.",
+    "visionTitle": "Our Vision",
+    "visionBody": "To become Maharashtra's most trusted name in professional cleaning — an organisation where every client receives transparent service, every technician is treated with respect, and every job reflects our commitment to quality.",
+    "valuesTitle": "What guides us",
+    "values": [
+      { "title": "Integrity", "body": "Honest quotes, honest work, honest reports." },
+      { "title": "Excellence", "body": "Trained crew, specified chemistry, documented controls." },
+      { "title": "Responsibility", "body": "Eco-friendly agents, fair wages, safe practices." },
+      { "title": "Care", "body": "We treat your property the way we'd treat our own." }
+    ]
+  },
+  "blog": {
+    "eyebrow": "JOURNAL",
+    "title": "Guides, tips, and industry notes.",
+    "subtitle": "Practical reading on tank hygiene, facade care, and cleaning best practices.",
+    "comingSoon": "Articles coming soon.",
+    "comingSoonBody": "Our blog will go live once the Sanity CMS is connected. See the README for setup instructions.",
+    "readMore": "Read article",
+    "backToBlog": "Back to all articles"
+  }
+}
