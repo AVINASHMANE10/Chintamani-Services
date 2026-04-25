@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="stp-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14213D"/>
+      <stop offset="100%" stop-color="#050B16"/>
+    </linearGradient>
+    <linearGradient id="stp-tank" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4A6282"/>
+      <stop offset="40%" stop-color="#9AAFC5"/>
+      <stop offset="70%" stop-color="#6B85A3"/>
+      <stop offset="100%" stop-color="#1F3251"/>
+    </linearGradient>
+    <linearGradient id="stp-fire" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="60%" stop-color="#DC2626"/>
+      <stop offset="100%" stop-color="#7F1D1D"/>
+    </linearGradient>
+    <linearGradient id="stp-pipe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C9D5E3"/>
+      <stop offset="50%" stop-color="#6B85A3"/>
+      <stop offset="100%" stop-color="#1F3251"/>
+    </linearGradient>
+    <radialGradient id="stp-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#F43F5E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dark industrial background -->
+  <rect width="1200" height="800" fill="url(#stp-bg)"/>
+
+  <!-- Subtle grid pattern -->
+  <g stroke="#48BFFF" stroke-opacity="0.05" stroke-width="1">
+    <path d="M 0 0 L 1200 800 M 1200 0 L 0 800 M 600 0 L 600 800 M 0 400 L 1200 400"/>
+    <g>
+      <line x1="0" y1="100" x2="1200" y2="100"/>
+      <line x1="0" y1="200" x2="1200" y2="200"/>
+      <line x1="0" y1="300" x2="1200" y2="300"/>
+      <line x1="0" y1="500" x2="1200" y2="500"/>
+      <line x1="0" y1="600" x2="1200" y2="600"/>
+      <line x1="0" y1="700" x2="1200" y2="700"/>
+    </g>
+  </g>
+
+  <!-- Ambient red glow from fire side -->
+  <circle cx="300" cy="500" r="300" fill="url(#stp-glow)"/>
+
+  <!-- Floor / ground line -->
+  <line x1="0" y1="680" x2="1200" y2="680" stroke="#48BFFF" stroke-opacity="0.2" stroke-width="1" stroke-dasharray="4 8"/>
+
+  <!-- ===== LEFT SIDE: Fire system ===== -->
+  <!-- Fire hydrant base -->
+  <ellipse cx="260" cy="680" rx="80" ry="10" fill="#000000" fill-opacity="0.5"/>
+
+  <!-- Fire hydrant body -->
+  <g transform="translate(260 680)">
+    <rect x="-30" y="-280" width="60" height="280" rx="6" fill="url(#stp-fire)"/>
+    <rect x="-28" y="-275" width="10" height="270" fill="#FECACA" fill-opacity="0.3"/>
+    <!-- Top cap -->
+    <rect x="-40" y="-300" width="80" height="25" rx="4" fill="#991B1B"/>
+    <rect x="-35" y="-305" width="70" height="10" rx="2" fill="#B91C1C"/>
+    <!-- Valve handle -->
+    <circle cx="0" cy="-315" r="15" fill="#7F1D1D"/>
+    <circle cx="0" cy="-315" r="8" fill="#B91C1C"/>
+    <rect x="-25" y="-317" width="50" height="4" fill="#991B1B" rx="1"/>
+    <rect x="-2" y="-340" width="4" height="25" fill="#991B1B"/>
+    <!-- Side outlets -->
+    <circle cx="-30" cy="-180" r="18" fill="#7F1D1D"/>
+    <circle cx="-30" cy="-180" r="10" fill="#DC2626"/>
+    <circle cx="30" cy="-180" r="18" fill="#7F1D1D"/>
+    <circle cx="30" cy="-180" r="10" fill="#DC2626"/>
+    <!-- Base flange -->
+    <rect x="-35" y="-10" width="70" height="12" fill="#7F1D1D"/>
+    <rect x="-40" y="-2" width="80" height="6" fill="#450A0A"/>
+  </g>
+
+  <!-- Fire label/tag -->
+  <g transform="translate(160 420)">
+    <rect x="0" y="0" width="110" height="30" rx="4" fill="#DC2626"/>
+    <text x="55" y="20" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="2">FIRE</text>
+  </g>
+
+  <!-- ===== CENTER: Connecting pipe system ===== -->
+  <!-- Horizontal main pipe -->
+  <rect x="300" y="540" width="600" height="50" rx="6" fill="url(#stp-pipe)"/>
+  <rect x="300" y="544" width="600" height="10" fill="#C9D5E3" fill-opacity="0.4"/>
+
+  <!-- Flanges along pipe -->
+  <g fill="#34496A">
+    <rect x="380" y="530" width="20" height="70" rx="2"/>
+    <rect x="560" y="530" width="20" height="70" rx="2"/>
+    <rect x="740" y="530" width="20" height="70" rx="2"/>
+  </g>
+
+  <!-- Gauge on pipe -->
+  <g transform="translate(500 540)">
+    <circle cx="0" cy="-30" r="28" fill="#1F3251" stroke="#6B85A3" stroke-width="2"/>
+    <circle cx="0" cy="-30" r="22" fill="#050B16"/>
+    <!-- Dial tick marks -->
+    <g stroke="#48BFFF" stroke-width="1.5" stroke-linecap="round">
+      <line x1="0" y1="-50" x2="0" y2="-46"/>
+      <line x1="14" y1="-38" x2="12" y2="-34"/>
+      <line x1="-14" y1="-38" x2="-12" y2="-34"/>
+      <line x1="20" y1="-30" x2="16" y2="-30"/>
+      <line x1="-20" y1="-30" x2="-16" y2="-30"/>
+    </g>
+    <!-- Needle -->
+    <line x1="0" y1="-30" x2="8" y2="-42" stroke="#F43F5E" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="0" cy="-30" r="2.5" fill="#FECACA"/>
+  </g>
+
+  <!-- Valve wheel center -->
+  <g transform="translate(680 540)">
+    <line x1="0" y1="-40" x2="0" y2="0" stroke="#4A6282" stroke-width="8"/>
+    <circle cx="0" cy="-50" r="22" fill="#34496A" stroke="#6B85A3" stroke-width="2"/>
+    <g stroke="#6B85A3" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="-70" x2="0" y2="-30"/>
+      <line x1="-20" y1="-50" x2="20" y2="-50"/>
+      <line x1="-14" y1="-64" x2="14" y2="-36"/>
+      <line x1="-14" y1="-36" x2="14" y2="-64"/>
+    </g>
+    <circle cx="0" cy="-50" r="5" fill="#1F3251"/>
+  </g>
+
+  <!-- Small steam wisp from valve -->
+  <g transform="translate(680 490)" fill="#C9D5E3" fill-opacity="0.2">
+    <ellipse cx="0" cy="-30" rx="15" ry="8">
+      <animate attributeName="cy" values="-30;-70;-30" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0;0.3" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="-8" cy="-50" rx="10" ry="6">
+      <animate attributeName="cy" values="-50;-90;-50" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0;0.2" dur="5s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <!-- ===== RIGHT SIDE: Steel water/STP tank ===== -->
+  <ellipse cx="980" cy="680" rx="130" ry="15" fill="#000000" fill-opacity="0.5"/>
+  <g transform="translate(980 680)">
+    <!-- Main cylindrical steel tank -->
+    <path d="M -120 -360 L 120 -360 Q 130 -360 130 -350 L 130 -10 Q 130 0 120 0 L -120 0 Q -130 0 -130 -10 L -130 -350 Q -130 -360 -120 -360 Z"
+          fill="url(#stp-tank)"/>
+
+    <!-- Tank seams -->
+    <g stroke="#1F3251" stroke-width="1" stroke-opacity="0.6">
+      <line x1="-130" y1="-280" x2="130" y2="-280"/>
+      <line x1="-130" y1="-190" x2="130" y2="-190"/>
+      <line x1="-130" y1="-100" x2="130" y2="-100"/>
+    </g>
+
+    <!-- Highlight stripe -->
+    <rect x="-115" y="-355" width="18" height="345" fill="#E8EEF5" fill-opacity="0.35" rx="2"/>
+
+    <!-- Rivet dots along seams -->
+    <g fill="#050B16" fill-opacity="0.5">
+      <circle cx="-100" cy="-280" r="2"/><circle cx="-60" cy="-280" r="2"/><circle cx="-20" cy="-280" r="2"/>
+      <circle cx="20" cy="-280" r="2"/><circle cx="60" cy="-280" r="2"/><circle cx="100" cy="-280" r="2"/>
+      <circle cx="-100" cy="-190" r="2"/><circle cx="-60" cy="-190" r="2"/><circle cx="-20" cy="-190" r="2"/>
+      <circle cx="20" cy="-190" r="2"/><circle cx="60" cy="-190" r="2"/><circle cx="100" cy="-190" r="2"/>
+      <circle cx="-100" cy="-100" r="2"/><circle cx="-60" cy="-100" r="2"/><circle cx="-20" cy="-100" r="2"/>
+      <circle cx="20" cy="-100" r="2"/><circle cx="60" cy="-100" r="2"/><circle cx="100" cy="-100" r="2"/>
+    </g>
+
+    <!-- Top of tank -->
+    <ellipse cx="0" cy="-360" rx="130" ry="20" fill="#6B85A3"/>
+    <ellipse cx="0" cy="-365" rx="115" ry="14" fill="#9AAFC5"/>
+
+    <!-- Access hatch on top -->
+    <circle cx="-30" cy="-360" r="16" fill="#14213D"/>
+    <circle cx="-30" cy="-360" r="12" fill="#1F3251"/>
+    <rect x="-40" y="-362" width="20" height="4" rx="1" fill="#34496A"/>
+
+    <!-- Vent pipe -->
+    <rect x="45" y="-410" width="14" height="55" rx="2" fill="#4A6282"/>
+    <rect x="40" y="-415" width="24" height="8" rx="2" fill="#6B85A3"/>
+
+    <!-- Ladder -->
+    <g stroke="#34496A" stroke-width="3" stroke-linecap="round">
+      <line x1="75" y1="-340" x2="75" y2="-20"/>
+      <line x1="95" y1="-340" x2="95" y2="-20"/>
+      <line x1="75" y1="-320" x2="95" y2="-320"/>
+      <line x1="75" y1="-280" x2="95" y2="-280"/>
+      <line x1="75" y1="-240" x2="95" y2="-240"/>
+      <line x1="75" y1="-200" x2="95" y2="-200"/>
+      <line x1="75" y1="-160" x2="95" y2="-160"/>
+      <line x1="75" y1="-120" x2="95" y2="-120"/>
+      <line x1="75" y1="-80" x2="95" y2="-80"/>
+      <line x1="75" y1="-40" x2="95" y2="-40"/>
+    </g>
+
+    <!-- STP label -->
+    <rect x="-50" y="-230" width="100" height="30" rx="3" fill="#0D4987"/>
+    <text x="0" y="-210" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="3">STP</text>
+  </g>
+
+  <!-- Caution stripe on floor -->
+  <g>
+    <rect x="0" y="700" width="1200" height="20" fill="#0A1628" fill-opacity="0.4"/>
+    <g fill="#F59E0B" fill-opacity="0.6">
+      <polygon points="0,700 30,700 20,720 0,720"/>
+      <polygon points="60,700 90,700 80,720 50,720"/>
+      <polygon points="120,700 150,700 140,720 110,720"/>
+      <polygon points="180,700 210,700 200,720 170,720"/>
+      <polygon points="1050,700 1080,700 1070,720 1040,720"/>
+      <polygon points="1110,700 1140,700 1130,720 1100,720"/>
+      <polygon points="1170,700 1200,700 1190,720 1160,720"/>
+    </g>
+  </g>
+
+  <!-- Safety warning symbol -->
+  <g transform="translate(100 150)">
+    <polygon points="0,-28 26,20 -26,20" fill="#F59E0B" stroke="#0A1628" stroke-width="2"/>
+    <text x="0" y="16" fill="#0A1628" font-family="Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle">!</text>
+  </g>
+</svg>

@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="ct-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1F3251"/>
+      <stop offset="45%" stop-color="#4A6282"/>
+      <stop offset="75%" stop-color="#F59E0B" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FCD34D" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="ct-tower" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6B85A3"/>
+      <stop offset="30%" stop-color="#9AAFC5"/>
+      <stop offset="70%" stop-color="#4A6282"/>
+      <stop offset="100%" stop-color="#14213D"/>
+    </linearGradient>
+    <linearGradient id="ct-tower-inside" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#050B16"/>
+      <stop offset="100%" stop-color="#1F3251"/>
+    </linearGradient>
+    <radialGradient id="ct-sun" cx="0.85" cy="0.7" r="0.4">
+      <stop offset="0%" stop-color="#FCD34D" stop-opacity="0.7"/>
+      <stop offset="40%" stop-color="#F59E0B" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ct-steam" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky gradient (dusk) -->
+  <rect width="1200" height="800" fill="url(#ct-sky)"/>
+
+  <!-- Sun glow -->
+  <ellipse cx="1050" cy="580" rx="600" ry="220" fill="url(#ct-sun)"/>
+
+  <!-- Sun -->
+  <circle cx="1020" cy="560" r="45" fill="#FCD34D" opacity="0.8"/>
+  <circle cx="1020" cy="560" r="30" fill="#FEF3C7"/>
+
+  <!-- Distant mountain silhouette -->
+  <path d="M 0 620 L 150 540 L 280 590 L 420 520 L 600 570 L 780 510 L 900 560 L 1050 520 L 1200 580 L 1200 680 L 0 680 Z"
+        fill="#14213D" fill-opacity="0.6"/>
+
+  <!-- Far pipes and structures -->
+  <g fill="#0A1628" fill-opacity="0.7">
+    <rect x="80" y="560" width="8" height="80"/>
+    <rect x="100" y="540" width="12" height="100"/>
+    <rect x="150" y="555" width="10" height="85"/>
+    <rect x="1000" y="570" width="10" height="70"/>
+    <rect x="1020" y="555" width="14" height="85"/>
+    <rect x="1080" y="545" width="8" height="95"/>
+  </g>
+
+  <!-- Horizontal far pipe -->
+  <rect x="0" y="615" width="1200" height="5" fill="#0A1628" fill-opacity="0.7"/>
+
+  <!-- ===== Main cooling tower ===== -->
+  <g transform="translate(600 680)">
+    <!-- Ground shadow -->
+    <ellipse cx="0" cy="5" rx="230" ry="18" fill="#050B16" fill-opacity="0.7"/>
+
+    <!-- Tower body (hyperbolic) -->
+    <path d="M -220 0
+             C -220 -80, -140 -160, -110 -280
+             C -100 -340, -100 -400, -130 -520
+             L 130 -520
+             C 100 -400, 100 -340, 110 -280
+             C 140 -160, 220 -80, 220 0
+             Z"
+          fill="url(#ct-tower)"/>
+
+    <!-- Inner shadow (shows top is hollow) -->
+    <path d="M -130 -520
+             C -125 -510, -50 -505, 0 -505
+             C 50 -505, 125 -510, 130 -520
+             L 110 -498
+             C 90 -492, 40 -490, 0 -490
+             C -40 -490, -90 -492, -110 -498 Z"
+          fill="url(#ct-tower-inside)"/>
+
+    <!-- Vertical beam lines on tower -->
+    <g stroke="#0A1628" stroke-opacity="0.3" stroke-width="1">
+      <path d="M -180 -10 C -180 -75, -105 -155, -85 -275 C -80 -335, -80 -400, -105 -510" fill="none"/>
+      <path d="M -130 -10 C -130 -60, -70 -135, -55 -260 C -50 -330, -50 -400, -70 -515" fill="none"/>
+      <path d="M -70 -10 C -70 -60, -35 -130, -25 -255 C -20 -325, -20 -400, -35 -515" fill="none"/>
+      <path d="M 0 -10 L 0 -520" fill="none" stroke-opacity="0.4"/>
+      <path d="M 70 -10 C 70 -60, 35 -130, 25 -255 C 20 -325, 20 -400, 35 -515" fill="none"/>
+      <path d="M 130 -10 C 130 -60, 70 -135, 55 -260 C 50 -330, 50 -400, 70 -515" fill="none"/>
+      <path d="M 180 -10 C 180 -75, 105 -155, 85 -275 C 80 -335, 80 -400, 105 -510" fill="none"/>
+    </g>
+
+    <!-- Horizontal ring bands -->
+    <g stroke="#E8EEF5" stroke-opacity="0.15" stroke-width="1">
+      <ellipse cx="0" cy="-100" rx="195" ry="16"/>
+      <ellipse cx="0" cy="-200" rx="158" ry="12"/>
+      <ellipse cx="0" cy="-300" rx="112" ry="10"/>
+      <ellipse cx="0" cy="-400" rx="102" ry="9"/>
+      <ellipse cx="0" cy="-500" rx="128" ry="10"/>
+    </g>
+
+    <!-- Rim at top -->
+    <ellipse cx="0" cy="-520" rx="130" ry="10" fill="#6B85A3"/>
+    <ellipse cx="0" cy="-523" rx="120" ry="7" fill="#34496A"/>
+
+    <!-- Ventilation louvers at base -->
+    <g stroke="#14213D" stroke-width="2" opacity="0.7">
+      <line x1="-200" y1="-10" x2="200" y2="-10"/>
+      <line x1="-205" y1="-30" x2="205" y2="-30"/>
+      <line x1="-210" y1="-50" x2="210" y2="-50"/>
+    </g>
+
+    <!-- Base platform -->
+    <rect x="-240" y="0" width="480" height="20" fill="#14213D"/>
+    <rect x="-250" y="0" width="500" height="6" fill="#34496A"/>
+
+    <!-- Highlight on left edge -->
+    <path d="M -215 -5 C -215 -75, -140 -150, -115 -270 C -105 -325, -105 -395, -125 -510 L -120 -515 C -100 -400, -100 -340, -110 -275 C -135 -150, -212 -75, -212 -5 Z"
+          fill="#C9D5E3" fill-opacity="0.2"/>
+  </g>
+
+  <!-- ===== STEAM CLOUDS ===== -->
+  <g>
+    <!-- Base steam mass -->
+    <g transform="translate(600 160)">
+      <ellipse cx="0" cy="0" rx="180" ry="70" fill="url(#ct-steam)" opacity="0.8"/>
+      <ellipse cx="-80" cy="-30" rx="90" ry="60" fill="url(#ct-steam)" opacity="0.6"/>
+      <ellipse cx="60" cy="-40" rx="110" ry="70" fill="url(#ct-steam)" opacity="0.7"/>
+      <ellipse cx="0" cy="-80" rx="130" ry="60" fill="url(#ct-steam)" opacity="0.5"/>
+      <ellipse cx="-100" cy="-110" rx="70" ry="50" fill="url(#ct-steam)" opacity="0.4"/>
+      <ellipse cx="120" cy="-120" rx="90" ry="60" fill="url(#ct-steam)" opacity="0.45"/>
+    </g>
+
+    <!-- Rising wisps (animated) -->
+    <g transform="translate(600 80)">
+      <ellipse cx="-40" cy="0" rx="50" ry="30" fill="#FFFFFF" fill-opacity="0.3">
+        <animate attributeName="cy" values="0;-80;0" dur="8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.3;0;0.3" dur="8s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="40" cy="20" rx="35" ry="25" fill="#FFFFFF" fill-opacity="0.25">
+        <animate attributeName="cy" values="20;-60;20" dur="10s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.25;0;0.25" dur="10s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="0" cy="40" rx="60" ry="30" fill="#FFFFFF" fill-opacity="0.2">
+        <animate attributeName="cy" values="40;-40;40" dur="12s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.2;0;0.2" dur="12s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+  </g>
+
+  <!-- Auxiliary structures on right -->
+  <g transform="translate(930 680)">
+    <!-- Small tank -->
+    <rect x="-40" y="-120" width="80" height="120" fill="#1F3251"/>
+    <rect x="-42" y="-128" width="84" height="10" fill="#4A6282"/>
+    <circle cx="0" cy="-80" r="8" fill="#F43F5E"/>
+    <rect x="-35" y="-50" width="70" height="3" fill="#6B85A3"/>
+  </g>
+
+  <!-- Auxiliary structure on left -->
+  <g transform="translate(220 680)">
+    <rect x="-30" y="-100" width="60" height="100" fill="#1F3251"/>
+    <rect x="-32" y="-108" width="64" height="10" fill="#4A6282"/>
+    <rect x="-20" y="-90" width="12" height="12" fill="#FCD34D" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Birds silhouette for scale -->
+  <g fill="#14213D" opacity="0.6">
+    <path d="M 180 260 Q 190 252, 200 260 Q 195 255, 200 250 Q 190 258, 180 260 Z"/>
+    <path d="M 220 280 Q 230 272, 240 280 Q 235 275, 240 270 Q 230 278, 220 280 Z"/>
+    <path d="M 850 220 Q 862 212, 875 220 Q 868 214, 875 208 Q 862 218, 850 220 Z"/>
+  </g>
+
+  <!-- Ground level baseline -->
+  <rect x="0" y="685" width="1200" height="115" fill="#050B16" fill-opacity="0.4"/>
+</svg>
