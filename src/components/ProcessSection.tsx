@@ -3,45 +3,78 @@
 import { motion } from 'motion/react';
 
 type Step = { n: string; title: string; body: string };
-type Dict = { eyebrow: string; title: string; steps: Step[] };
+type Dict = { eyebrow: string; title: string; subtitle?: string; steps: Step[] };
 
 export default function ProcessSection({ dict }: { dict: Dict }) {
   return (
-    <section className="py-24 md:py-36">
-      <div className="container-x">
-        <div className="mb-16 max-w-3xl">
-          <span className="eyebrow">{dict.eyebrow}</span>
-          <h2 className="display-lg mt-4 text-balance">{dict.title}</h2>
+    <section className="relative water-bg-deep py-14 md:py-20">
+      {/* Wave divider at top */}
+      <div className="absolute inset-x-0 top-0">
+        <svg
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="h-12 w-full md:h-16"
+          aria-hidden
+        >
+          <path
+            d="M0,0 L0,30 Q360,55 720,30 T1440,30 L1440,0 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
+
+      <div className="container-x relative">
+        <div className="mb-10 text-center md:mb-14">
+          <div className="eyebrow">{dict.eyebrow}</div>
+          <h2 className="display-lg mt-3 text-balance">{dict.title}</h2>
+          {dict.subtitle && (
+            <p className="body-lg mx-auto mt-4 max-w-2xl text-pretty">
+              {dict.subtitle}
+            </p>
+          )}
         </div>
 
-        <div className="relative grid gap-10 md:grid-cols-4 md:gap-6">
-          {/* Connecting line */}
-          <div className="pointer-events-none absolute left-0 right-0 top-[58px] hidden h-px bg-gradient-to-r from-ink-100 via-ink-200 to-ink-100 md:block" />
-
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
           {dict.steps.map((step, i) => (
             <motion.div
               key={step.n}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="relative"
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="relative rounded-3xl bg-white p-6 ring-1 ring-aqua-100 transition-all hover:shadow-lg md:p-7"
             >
-              {/* Numbered node */}
-              <div className="relative mb-8 flex h-[116px] items-end">
-                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-ink-200 bg-white font-display text-2xl text-ink-900">
-                  {step.n}
-                  <span className="absolute inset-0 rounded-full border border-aqua-300/0 transition-all duration-500 group-hover:border-aqua-300" />
+              {/* Droplet-shaped number */}
+              <div className="relative">
+                <svg
+                  viewBox="0 0 80 100"
+                  className="absolute -top-2 -left-2 h-16 w-12 md:h-20 md:w-16"
+                  aria-hidden
+                >
+                  <defs>
+                    <linearGradient id={`drop-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#48BFFF" />
+                      <stop offset="100%" stopColor="#0066D3" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M40 5 C 60 35 75 55 75 70 A 35 35 0 1 1 5 70 C 5 55 20 35 40 5 Z"
+                    fill={`url(#drop-grad-${i})`}
+                  />
+                </svg>
+                <div className="relative pl-12 pt-3 md:pl-16 md:pt-4">
+                  <span className="font-display text-lg font-extrabold text-white drop-shadow-md md:text-xl">
+                    {step.n}
+                  </span>
                 </div>
-                {i < dict.steps.length - 1 && (
-                  <div className="absolute left-16 top-1/2 hidden h-px w-[calc(100%-64px)] bg-gradient-to-r from-ink-200 to-transparent md:block" />
-                )}
               </div>
 
-              <h3 className="font-display text-2xl leading-tight text-ink-900 md:text-[28px]">
+              <h3 className="mt-5 font-display text-lg font-extrabold leading-tight text-ink-900 md:text-xl">
                 {step.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-500">{step.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                {step.body}
+              </p>
             </motion.div>
           ))}
         </div>

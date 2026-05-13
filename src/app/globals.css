@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --font-display: "Instrument Serif", Georgia, serif;
-    --font-sans: "Geist", system-ui, -apple-system, sans-serif;
+    --font-display: "Manrope", system-ui, sans-serif;
+    --font-sans: "Manrope", system-ui, sans-serif;
     --font-devanagari: "Tiro Devanagari Marathi", "Noto Serif Devanagari", serif;
   }
 
@@ -16,15 +16,13 @@
   }
 
   body {
-    @apply bg-white text-ink-900 font-sans;
-    font-feature-settings: "cv11", "ss03", "ss01";
+    @apply bg-white text-ink-800 font-sans;
   }
 
   ::selection {
-    @apply bg-aqua-500/30 text-ink-900;
+    @apply bg-aqua-200 text-ink-900;
   }
 
-  /* Premium focus ring */
   :focus-visible {
     @apply outline-none ring-2 ring-aqua-500 ring-offset-2 ring-offset-white;
   }
@@ -32,64 +30,57 @@
 
 @layer components {
   .container-x {
-    @apply mx-auto max-w-7xl px-6 md:px-8 lg:px-12;
+    @apply mx-auto max-w-7xl px-5 md:px-8 lg:px-12;
   }
 
   .eyebrow {
-    @apply text-[11px] font-medium uppercase tracking-[0.22em] text-aqua-700;
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-aqua-700;
   }
 
+  /* Simpler, friendlier display sizes - bolder, no italic serif */
   .display-xl {
-    @apply font-display text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.98] tracking-[-0.02em];
+    @apply font-display font-extrabold text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.05] tracking-tight text-ink-900;
   }
 
   .display-lg {
-    @apply font-display text-[clamp(2.25rem,4.5vw,4rem)] leading-[1.02] tracking-[-0.015em];
+    @apply font-display font-extrabold text-[clamp(2rem,4vw,3.25rem)] leading-[1.1] tracking-tight text-ink-900;
   }
 
   .display-md {
-    @apply font-display text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.01em];
+    @apply font-display font-bold text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.15] tracking-tight text-ink-900;
   }
 
   .body-lg {
-    @apply text-lg md:text-xl leading-[1.55] text-ink-500;
+    @apply text-base md:text-lg leading-[1.6] text-ink-600;
   }
 
+  /* Primary CTA - water blue, big, clear */
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-full bg-ink-900 px-7 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-aqua-700 hover:shadow-[0_0_32px_rgba(30,160,255,0.35)] active:scale-[0.98];
+    @apply inline-flex items-center gap-2 rounded-full bg-aqua-700 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-aqua-800 hover:shadow-lg active:scale-[0.98] md:text-base;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white/60 px-7 py-3.5 text-sm font-medium text-ink-900 backdrop-blur-md transition-all duration-300 hover:border-ink-900 hover:bg-white;
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-ink-200 bg-white px-6 py-3.5 text-sm font-semibold text-ink-900 transition-all duration-200 hover:border-aqua-700 hover:bg-aqua-50 active:scale-[0.98] md:text-base;
   }
 
-  .btn-white {
-    @apply inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-ink-900 transition-all duration-300 hover:bg-aqua-50 active:scale-[0.98];
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-emerald-600 active:scale-[0.98] md:text-base;
   }
 
-  /* Grain texture overlay */
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0.06;
-    pointer-events: none;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* Dot pattern */
+  /* Subtle bg patterns */
   .dots {
-    background-image: radial-gradient(circle, rgba(10, 22, 40, 0.08) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background-image: radial-gradient(circle, rgba(13, 73, 135, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 
-  /* Glass card */
-  .glass {
-    @apply border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+  .water-bg {
+    background: linear-gradient(180deg, #EDF9FF 0%, #FFFFFF 100%);
   }
 
-  /* Link underline effect */
+  .water-bg-deep {
+    background: linear-gradient(180deg, #D6F1FF 0%, #EDF9FF 100%);
+  }
+
   .link-underline {
     position: relative;
   }
@@ -99,15 +90,52 @@
     left: 0;
     bottom: -2px;
     width: 100%;
-    height: 1px;
+    height: 2px;
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 0.4s ease;
   }
   .link-underline:hover::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  /* Water droplet pulse animation */
+  @keyframes water-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.08);
+      opacity: 0.95;
+    }
+  }
+  .water-pulse {
+    animation: water-pulse 3s ease-in-out infinite;
+  }
+
+  /* Slow gentle float for droplets */
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  /* Ripple expansion */
+  @keyframes ripple {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+  .ripple-anim {
+    animation: ripple 2.5s ease-out infinite;
   }
 }
 
@@ -118,16 +146,25 @@
   .text-pretty {
     text-wrap: pretty;
   }
+}
 
-  .mask-fade-b {
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  }
-
-  .mask-fade-r {
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-  }
+/* Wave divider — used between sections for water theme */
+.wave-divider {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  background: none;
+}
+.wave-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 Q360,0 720,40 T1440,40 L1440,80 L0,80 Z' fill='%23EDF9FF'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.wave-divider-deep::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 Q360,0 720,40 T1440,40 L1440,80 L0,80 Z' fill='%23D6F1FF'/></svg>");
 }
 
 /* Custom scrollbar */
@@ -139,9 +176,9 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(10, 22, 40, 0.15);
+  background: rgba(13, 73, 135, 0.2);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(10, 22, 40, 0.3);
+  background: rgba(13, 73, 135, 0.4);
 }

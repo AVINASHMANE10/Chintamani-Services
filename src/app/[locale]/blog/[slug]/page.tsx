@@ -1,9 +1,11 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock } from 'lucide-react';
 import { getDictionary, type Locale } from '@/i18n/config';
-import { getAllPosts, getPostBySlug } from '@/lib/sanity';
+import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import CTASection from '@/components/CTASection';
+import { SITE } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export async function generateStaticParams() {
@@ -19,17 +21,19 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/${locale}/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
       publishedTime: post.publishedAt,
+      images: post.coverImage ? [post.coverImage] : undefined,
     },
   };
 }
@@ -45,9 +49,41 @@ export default async function BlogPostPage({
 
   const dict = await getDictionary(locale as Locale);
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.coverImage ? `${SITE.url}${post.coverImage}` : undefined,
+    datePublished: post.publishedAt,
+    author: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE.url}/logo.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/${locale}/blog/${slug}`,
+    },
+    articleSection: post.category,
+  };
+
   return (
     <>
-      <article className="pt-16 md:pt-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+
+      <article className="pt-12 md:pt-20">
         <div className="container-x">
           {/* Back link */}
           <Link
@@ -72,24 +108,38 @@ export default async function BlogPostPage({
             <span className="h-1 w-1 rounded-full bg-ink-300" />
             <span className="inline-flex items-center gap-1">
               <Clock className="h-3 w-3" strokeWidth={2} />
-              {post.readingMinutes} min read
+              {post.readingMinutes} {dict.blog.minRead || 'min read'}
             </span>
           </div>
 
           {/* Title */}
           <h1 className="display-lg max-w-4xl text-balance">{post.title}</h1>
           <p className="body-lg mt-6 max-w-3xl text-pretty">{post.excerpt}</p>
+
+          {/* Cover image */}
+          {post.coverImage && (
+            <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-3xl border border-ink-100">
+              <Image
+                src={post.coverImage}
+                alt={post.title}
+                fill
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+          )}
         </div>
       </article>
 
       {/* Body */}
       <section className="py-16 md:py-20">
         <div className="container-x">
-          <div className="prose prose-lg mx-auto max-w-3xl">
+          <div className="mx-auto max-w-3xl">
             {post.body.split('\n\n').map((para, i) => (
               <p
                 key={i}
-                className="mb-6 whitespace-pre-line text-base leading-[1.75] text-ink-700 md:text-lg md:leading-[1.8]"
+                className="mb-6 whitespace-pre-line text-base leading-[1.8] text-ink-700 md:text-lg"
               >
                 {para}
               </p>
@@ -99,7 +149,7 @@ export default async function BlogPostPage({
       </section>
 
       {/* Divider & next CTA */}
-      <section className="border-t border-ink-100 py-16">
+      <section className="border-t border-ink-100 py-12">
         <div className="container-x text-center">
           <Link
             href={`/${locale}/blog`}

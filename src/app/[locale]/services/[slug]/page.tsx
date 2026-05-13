@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { ArrowRight, ArrowUpRight, Check, Phone } from 'lucide-react';
+import { ArrowLeft, Phone, MessageCircle, Check } from 'lucide-react';
 import { getDictionary, type Locale } from '@/i18n/config';
 import { services, getService } from '@/data/services';
 import CTASection from '@/components/CTASection';
-import { cn, SITE } from '@/lib/utils';
+import { SITE } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export async function generateStaticParams() {
@@ -24,13 +24,19 @@ export async function generateMetadata({
   const dict = await getDictionary(locale as Locale);
   const content = (dict.services as any)[slug];
   if (!content) return {};
+
+  const service = getService(slug);
+  const imagePath = service?.image || `/images/services/${slug}.jpg`;
+
   return {
-    title: content.name,
+    title: `${content.name} in Pune & Pimpri-Chinchwad`,
     description: content.short,
+    alternates: { canonical: `/${locale}/services/${slug}` },
     openGraph: {
       title: content.name,
       description: content.short,
-      images: [`/images/services/${slug}.svg`],
+      images: [imagePath],
+      type: 'website',
     },
   };
 }
@@ -45,281 +51,205 @@ export default async function ServiceDetailPage({
   if (!service) notFound();
 
   const dict = await getDictionary(locale as Locale);
-  const content = (dict.services as any)[slug];
+  const content = (dict.services as any)[slug] as {
+    name: string;
+    short: string;
+    tagline: string;
+    overview: string;
+    features: string[];
+  };
   if (!content) notFound();
 
-  // notFound() throws, so past this point service is defined. TS doesn't infer this.
-  const s = service!;
-  const Icon = s.icon;
-  const darkIllustration =
-    s.slug === 'stp-fire-tank' || s.slug === 'industrial-cooling-tower';
+  const phone = SITE.phones[0].replace(/\s/g, '');
+  const whatsapp = SITE.whatsapp.replace(/[^\d]/g, '');
 
-  // Related services — next 3 in the list, wrapping around
+  // Related services
   const idx = services.findIndex((r) => r.slug === slug);
   const related = [...services.slice(idx + 1), ...services.slice(0, idx)].slice(0, 3);
 
+  // SEO schema
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: content.name,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: SITE.name,
+      telephone: SITE.phones[0],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
+        addressLocality: SITE.address.city,
+        addressRegion: SITE.address.region,
+        postalCode: SITE.address.postal,
+        addressCountry: 'IN',
+      },
+    },
+    areaServed: SITE.serviceAreas.map((area) => ({ '@type': 'City', name: area })),
+    description: content.overview,
+    url: `${SITE.url}/${locale}/services/${slug}`,
+  };
+
   return (
     <>
-      {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden pb-12 pt-10 md:pb-20 md:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
+      {/* HERO */}
+      <section className="relative water-bg pb-12 pt-8 md:pb-16 md:pt-12">
         <div className="container-x">
           {/* Breadcrumb */}
-          <nav className="mb-10 flex items-center gap-2 text-xs text-ink-500">
-            <Link href={`/${locale}`} className="hover:text-ink-900">
-              Home
-            </Link>
-            <span className="text-ink-300">/</span>
-            <Link href={`/${locale}/services`} className="hover:text-ink-900">
-              Services
-            </Link>
-            <span className="text-ink-300">/</span>
-            <span className="text-ink-900">{content.name}</span>
-          </nav>
+          <Link
+            href={`/${locale}/services`}
+            className="inline-flex items-center gap-2 text-sm text-aqua-700 hover:text-aqua-900"
+          >
+            <ArrowLeft className="h-4 w-4" strokeWidth={2} />
+            {dict.servicesSection.title}
+          </Link>
 
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-            {/* Left — text */}
-            <div className="flex flex-col justify-between lg:col-span-5">
-              <div>
-                <div className="flex items-center gap-3">
-                  <div
-                    className={cn(
-                      'inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-lg',
-                      s.accent
-                    )}
-                  >
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
-                  </div>
-                  <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-ink-500">
-                    {s.number} · {content.tagline}
-                  </span>
-                </div>
+          <div className="mt-8 grid gap-8 md:gap-12 lg:grid-cols-12">
+            {/* Left - text */}
+            <div className="lg:col-span-6">
+              <div className="eyebrow">{content.tagline}</div>
+              <h1 className="display-xl mt-3 text-balance">{content.name}</h1>
+              <p className="body-lg mt-5 text-pretty">{content.overview}</p>
 
-                <h1 className="display-lg mt-8 text-balance">{content.name}</h1>
-                <p className="body-lg mt-8 max-w-xl text-pretty">{content.overview}</p>
-              </div>
-
-              <div className="mt-12 flex flex-wrap gap-3">
-                <Link href={`/${locale}/contact`} className="btn-primary group">
-                  {dict.cta.button}
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                    strokeWidth={2}
-                  />
-                </Link>
-                <a href={`tel:${SITE.phones[0].replace(/\s/g, '')}`} className="btn-ghost">
-                  <Phone className="h-4 w-4" strokeWidth={1.75} />
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href={`tel:${phone}`} className="btn-primary">
+                  <Phone className="h-4 w-4" strokeWidth={2.5} fill="currentColor" />
                   {SITE.phones[0]}
+                </a>
+                <a
+                  href={`https://wa.me/${whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp"
+                >
+                  <MessageCircle className="h-4 w-4" strokeWidth={2.5} fill="currentColor" />
+                  WhatsApp
                 </a>
               </div>
             </div>
 
-            {/* Right — the illustration is the hero */}
-            <div className="lg:col-span-7">
-              <div
-                className={cn(
-                  'relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink-100 bg-gradient-to-br shadow-[0_30px_80px_-20px_rgba(10,22,40,0.25)]',
-                  s.cardBg
-                )}
-              >
-                {/* Subtle grain */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 mix-blend-overlay opacity-[0.08]"
-                  style={{
-                    backgroundImage:
-                      "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                  }}
-                />
-
-                {/* Large number watermark */}
-                <span
-                  className={cn(
-                    'pointer-events-none absolute left-8 top-6 font-display text-[120px] italic leading-none md:text-[160px]',
-                    darkIllustration ? 'text-white/15' : 'text-ink-900/10'
-                  )}
-                >
-                  {s.number}
-                </span>
-
-                {/* The SVG illustration */}
+            {/* Right - image */}
+            <div className="lg:col-span-6">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-aqua-50 shadow-xl shadow-aqua-900/10">
                 <Image
-                  src={s.image}
+                  src={service.image}
                   alt={content.name}
                   fill
-                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover object-center"
                   priority
                 />
+                {!service.illustrated && (
+                  <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-aqua-800 backdrop-blur">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+                    ISO 9001:2015
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                {/* Floating quick-fact pill, bottom-right */}
-                <div className="absolute bottom-6 right-6 flex items-center gap-3 rounded-full border border-white/20 bg-white/70 px-4 py-2 text-xs font-medium text-ink-900 backdrop-blur-xl">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                  </span>
-                  ISO 9001:2015 certified
+      {/* FEATURES */}
+      <section className="py-14 md:py-20">
+        <div className="container-x">
+          <div className="mb-10 max-w-2xl">
+            <div className="eyebrow">What's included</div>
+            <h2 className="display-md mt-3">Every job. Same standard.</h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+            {content.features.map((feature, i) => (
+              <div
+                key={i}
+                className="flex gap-4 rounded-2xl bg-aqua-50/40 p-5 ring-1 ring-aqua-100 md:p-6"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-aqua-700 text-white shadow-md shadow-aqua-700/30">
+                  <Check className="h-5 w-5" strokeWidth={2.5} />
                 </div>
+                <p className="text-sm leading-relaxed text-ink-700 md:text-base">
+                  {feature}
+                </p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ===== STATS STRIP ===== */}
-      <section className="border-y border-ink-100 bg-ink-50/50 py-8">
-        <div className="container-x">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-10">
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-ink-400">
-                Service area
-              </div>
-              <div className="mt-2 font-display text-xl text-ink-900 md:text-2xl">
-                Pune & Maharashtra
-              </div>
+      {/* GALLERY (only if real photos available) */}
+      {!service.illustrated && service.gallery.length > 1 && (
+        <section className="bg-aqua-50/40 py-14 md:py-20">
+          <div className="container-x">
+            <div className="mb-8 max-w-2xl md:mb-10">
+              <div className="eyebrow">From the field</div>
+              <h2 className="display-md mt-3">Recent work</h2>
             </div>
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-ink-400">
-                Response
-              </div>
-              <div className="mt-2 font-display text-xl text-ink-900 md:text-2xl">
-                Within 24 hours
-              </div>
-            </div>
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-ink-400">
-                Site visit
-              </div>
-              <div className="mt-2 font-display text-xl text-ink-900 md:text-2xl">
-                Free, no obligation
-              </div>
-            </div>
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-ink-400">
-                Documentation
-              </div>
-              <div className="mt-2 font-display text-xl text-ink-900 md:text-2xl">
-                Photo + digital report
-              </div>
+
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4">
+              {service.gallery.map((src, i) => (
+                <div
+                  key={src}
+                  className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-ink-900 ring-1 ring-aqua-100"
+                >
+                  <Image
+                    src={src}
+                    alt={`${content.name} – ${i + 1}`}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                    className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* ===== FEATURES ===== */}
-      <section className="py-24 md:py-32">
+      {/* RELATED */}
+      <section className="py-14 md:py-20">
         <div className="container-x">
-          <div className="grid gap-16 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <span className="eyebrow">What's included</span>
-              <h2 className="display-md mt-4 text-balance">
-                Methodical.
-                <br />
-                <span className="italic text-aqua-700">Measurable.</span>
-                <br />
-                Documented.
-              </h2>
-              <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink-500">
-                Every job follows the same structured approach — nothing skipped, nothing
-                improvised. Here's exactly what you get.
-              </p>
-            </div>
-
-            <div className="md:col-span-8">
-              <ul className="divide-y divide-ink-100 border-y border-ink-100">
-                {content.features.map((feature: string, i: number) => (
-                  <li key={i} className="group flex gap-5 py-6 md:gap-8 md:py-8">
-                    <div className="shrink-0">
-                      <div
-                        className={cn(
-                          'flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br text-white shadow-sm transition-transform duration-500 group-hover:scale-110',
-                          s.accent
-                        )}
-                      >
-                        <Check className="h-4 w-4" strokeWidth={2.5} />
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-base leading-relaxed text-ink-700 md:text-lg">
-                        {feature}
-                      </p>
-                    </div>
-                    <span className="hidden self-start pt-2 text-xs text-ink-400 md:block">
-                      0{i + 1}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== RELATED SERVICES ===== */}
-      <section className="border-t border-ink-100 bg-ink-50/50 py-24">
-        <div className="container-x">
-          <div className="mb-12 flex items-end justify-between">
-            <div>
-              <span className="eyebrow">More services</span>
-              <h2 className="display-md mt-4">Explore other offerings</h2>
-            </div>
-            <Link
-              href={`/${locale}/services`}
-              className="hidden text-sm font-medium text-ink-900 link-underline md:inline-flex md:items-center md:gap-1.5"
-            >
-              View all
-              <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} />
-            </Link>
+          <div className="mb-8 md:mb-10">
+            <div className="eyebrow">More services</div>
+            <h2 className="display-md mt-3">Other things we clean</h2>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3 md:gap-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
             {related.map((r) => {
-              const RIcon = r.icon;
               const rContent = (dict.services as any)[r.slug];
+              const RIcon = r.icon;
               return (
                 <Link
                   key={r.slug}
                   href={`/${locale}/services/${r.slug}`}
-                  className="group block overflow-hidden rounded-3xl border border-ink-100 bg-white transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(10,22,40,0.2)]"
+                  className="group relative block overflow-hidden rounded-2xl bg-white ring-1 ring-aqua-100 transition-all hover:ring-aqua-300 hover:shadow-lg"
                 >
-                  <div
-                    className={cn(
-                      'relative aspect-[4/3] overflow-hidden bg-gradient-to-br',
-                      r.cardBg
-                    )}
-                  >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-aqua-50">
                     <Image
                       src={r.image}
                       alt={rContent.name}
                       fill
                       sizes="(min-width: 768px) 33vw, 100vw"
-                      className="object-cover object-center transition-transform duration-[1200ms] group-hover:scale-[1.04]"
+                      className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-
-                  <div className="p-6 md:p-7">
+                  <div className="p-5">
                     <div className="flex items-center gap-3">
-                      <div
-                        className={cn(
-                          'inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br text-white',
-                          r.accent
-                        )}
-                      >
-                        <RIcon className="h-4 w-4" strokeWidth={1.75} />
+                      <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-aqua-100 text-aqua-700">
+                        <RIcon className="h-4 w-4" strokeWidth={2} />
                       </div>
-                      <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-ink-400">
+                      <span className="text-xs font-semibold uppercase tracking-wide text-ink-500">
                         {rContent.tagline}
                       </span>
                     </div>
-                    <h3 className="mt-4 font-display text-xl leading-tight text-ink-900 md:text-2xl">
+                    <h3 className="mt-3 font-display text-base font-bold leading-tight text-ink-900 md:text-lg">
                       {rContent.name}
                     </h3>
-                    <div className="mt-5 flex items-center justify-between border-t border-ink-100 pt-4">
-                      <span className="text-xs text-ink-500">Learn more</span>
-                      <ArrowUpRight
-                        className="h-4 w-4 text-ink-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink-900"
-                        strokeWidth={1.75}
-                      />
-                    </div>
                   </div>
                 </Link>
               );

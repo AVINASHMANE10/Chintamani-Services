@@ -1,5 +1,6 @@
 import { getDictionary, type Locale } from '@/i18n/config';
-import Hero from '@/components/Hero';
+import HeroCarousel from '@/components/HeroCarousel';
+import QuickIntro from '@/components/QuickIntro';
 import ServicesGrid from '@/components/ServicesGrid';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import ProcessSection from '@/components/ProcessSection';
@@ -15,7 +16,12 @@ export default async function HomePage({
 
   return (
     <>
-      <Hero locale={locale as Locale} dict={dict.hero} />
+      <HeroCarousel
+        locale={locale as Locale}
+        dict={dict.carousel}
+        servicesDict={dict.services as any}
+      />
+      <QuickIntro dict={dict.intro} />
       <ServicesGrid
         locale={locale as Locale}
         dict={dict.servicesSection}

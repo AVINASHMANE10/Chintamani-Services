@@ -17,6 +17,7 @@ type FooterDict = {
   terms: string;
   copyright: string;
   certification: string;
+  serviceAreasTitle?: string;
 };
 
 export default async function Footer({
@@ -128,9 +129,38 @@ export default async function Footer({
                 </a>
               </li>
             </ul>
+            <a
+              href={`https://wa.me/${SITE.whatsapp.replace(/[^\d]/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-xs font-medium text-white transition-all hover:bg-emerald-400"
+            >
+              WhatsApp us
+            </a>
           </div>
         </div>
       </div>
+
+      {/* Service areas band */}
+      {SITE.serviceAreas.length > 0 && (
+        <div className="border-t border-white/10">
+          <div className="container-x py-8">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-aqua-300">
+                {dict.serviceAreasTitle || 'Service Areas'}:
+              </span>
+              {SITE.serviceAreas.map((area, i) => (
+                <span key={area} className="text-xs text-ink-300">
+                  {area}
+                  {i < SITE.serviceAreas.length - 1 && (
+                    <span className="ml-3 text-ink-600">·</span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col items-center justify-between gap-4 py-6 md:flex-row">

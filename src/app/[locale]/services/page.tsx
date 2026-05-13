@@ -26,16 +26,13 @@ export default async function ServicesPage({
 
   return (
     <>
-      {/* Page hero */}
-      <section className="relative overflow-hidden pb-12 pt-16 md:pb-20 md:pt-24">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-radial from-aqua-100/50 to-transparent blur-3xl" />
-        </div>
+      {/* Page hero - small intro */}
+      <section className="relative water-bg pb-6 pt-12 md:pb-8 md:pt-16">
         <div className="container-x">
-          <div className="max-w-4xl">
-            <span className="eyebrow">{dict.servicesSection.eyebrow}</span>
-            <h1 className="display-xl mt-6 text-balance">{dict.servicesSection.title}</h1>
-            <p className="body-lg mt-8 max-w-2xl text-pretty">{dict.servicesSection.subtitle}</p>
+          <div className="max-w-3xl">
+            <div className="eyebrow">{dict.servicesSection.eyebrow}</div>
+            <h1 className="display-xl mt-3 text-balance">{dict.servicesSection.title}</h1>
+            <p className="body-lg mt-5 max-w-2xl text-pretty">{dict.servicesSection.subtitle}</p>
           </div>
         </div>
       </section>

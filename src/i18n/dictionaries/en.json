@@ -7,207 +7,191 @@
     "contact": "Contact",
     "getQuote": "Get a Quote"
   },
-  "hero": {
-    "eyebrow": "ISO 9001:2015 CERTIFIED · PUNE",
-    "title": "Cleaner water.",
-    "titleAccent": "Cleaner buildings.",
-    "titleEnd": "Cleaner standards.",
-    "subtitle": "Professional tank, facade, and deep-cleaning services trusted by homes, offices, and industries across Maharashtra.",
-    "ctaPrimary": "Book an Inspection",
-    "ctaSecondary": "Explore Services",
-    "stat1Value": "15+",
-    "stat1Label": "Years in service",
-    "stat2Value": "1,200+",
-    "stat2Label": "Tanks cleaned yearly",
-    "stat3Value": "ISO",
-    "stat3Label": "9001:2015 certified"
+  "carousel": {
+    "badge": "ISO 9001:2015 · Trusted since 2015",
+    "callNow": "Call Now",
+    "whatsapp": "WhatsApp",
+    "viewService": "Read More",
+    "hoursShort": "Open all 7 days · 9 AM – 9 PM"
+  },
+  "intro": {
+    "tagline": "Pimpri-Chinchwad, Pune",
+    "title": "Tank cleaning for Pune homes, societies and factories.",
+    "body": "Shree Chintamani Services has been cleaning tanks across Pune since 2015. STP, water tanks, fire tanks, cooling towers, solar heaters — we handle it all. One call, free site visit, honest quote.",
+    "yearsLabel": "Years",
+    "hoursLabel": "Days Open",
+    "certLabel": "Certified",
+    "callText": "Call us"
   },
   "servicesSection": {
-    "eyebrow": "WHAT WE DO",
-    "title": "Every surface, every system, spotless.",
-    "subtitle": "Six specialised service lines, one standard of care.",
-    "viewAll": "View all services"
+    "eyebrow": "Our Services",
+    "title": "What we clean",
+    "subtitle": "From your overhead tank to the STP in the basement — we clean everything that holds or moves water.",
+    "viewService": "Read more"
   },
   "services": {
-    "domestic-water-tank": {
-      "name": "Domestic & Drinking Water Tank Cleaning",
-      "short": "Safe, hygienic water storage for homes and apartments.",
-      "tagline": "Ensuring Safe Water Storage",
-      "overview": "Our expert cleaning process removes sediment, biofilm, and harmful microbes from your overhead and underground water tanks — making sure every drop that reaches your tap is safe.",
-      "features": [
-        "Thorough tank inspection to identify leaks, cracks and contamination",
-        "High-pressure jet washing to dislodge sludge and sediment",
-        "Food-grade sanitisation that eliminates bacteria and pathogens",
-        "Compliance with WHO and IS 10500 drinking water standards",
-        "Before-and-after photo report for your records"
-      ]
-    },
-    "stp-fire-tank": {
+    "stp-fire-tank-cleaning": {
       "name": "STP & Fire Tank Cleaning",
-      "short": "System efficiency for sewage treatment plants and fire reserves.",
-      "tagline": "Ensuring System Efficiency",
-      "overview": "From municipal STPs to building fire reserves — we handle sludge removal, odour control and regulatory-grade inspection so your safety systems are always audit-ready.",
+      "short": "Sewage Treatment Plant and Fire Reserve Tank cleaning for societies, hospitals and factories. Sludge removal, jetting, repair and compliance reports.",
+      "tagline": "Our specialty",
+      "overview": "We clean every kind of Sewage Treatment Plant (STP) and Fire Reserve Tank — from small society plants to large industrial systems. Sludge removal, high-pressure jetting, leak repairs, and compliance documentation. CPCB and MPCB safety rules followed every time.",
       "features": [
-        "Complete sludge and grit removal from STP chambers",
-        "Odour neutralisation using enzyme-based treatment",
-        "Fire tank debris clearance and structural inspection",
-        "Safety testing and compliance documentation",
-        "Regulatory adherence for CPCB, MPCB and fire NOC audits"
+        "Complete STP sludge removal from all chambers",
+        "Fire tank inspection, debris clearance and NOC support",
+        "High-pressure jet cleaning of walls, floor and baffles",
+        "Pipe, valve, aerator and diffuser repair",
+        "Odour control and disinfection after cleaning",
+        "Before/after photos and digital service report"
       ]
     },
-    "industrial-cooling-tower": {
+    "water-tank-cleaning": {
+      "name": "Domestic & Drinking Water Tank Cleaning",
+      "short": "Safe, hygienic cleaning of overhead tanks, underground sumps and drinking water tanks for homes, societies and offices.",
+      "tagline": "Safe water, every day",
+      "overview": "Overhead tanks, underground sumps, drinking water tanks — sediment, biofilm and harmful bacteria removed using high-pressure water jets and food-grade disinfectants. The water you drink and bathe in actually stays clean.",
+      "features": [
+        "Manual removal of mud, sand and debris from the tank floor",
+        "High-pressure jet washing of walls and floor",
+        "Food-grade sanitisation that kills bacteria",
+        "Tank inspection — leaks, cracks, gasket condition",
+        "Suitable for both residential and commercial tanks",
+        "Before/after photos and digital service report"
+      ]
+    },
+    "cooling-tower-cleaning": {
       "name": "Industrial Tank & Cooling Tower Cleaning",
-      "short": "Advanced solutions engineered for industrial-scale needs.",
-      "tagline": "Advanced Solutions for Industrial Needs",
-      "overview": "Tailored cleaning for process tanks, chillers and cooling towers. We optimise heat-transfer efficiency while keeping downtime to the absolute minimum.",
+      "short": "Scale, biofilm and algae removal from cooling tower fills and industrial process tanks for factories, hotels and commercial buildings.",
+      "tagline": "Better cooling, lower bills",
+      "overview": "Cooling towers lose efficiency fast when fills get blocked with algae, scale and dust. We remove the buildup with high-pressure jetting, clean the basin, check the fans and fills, and get the tower back to its original cooling capacity. Less power, lower water use.",
       "features": [
-        "Scale and biofilm removal from cooling tower fills",
-        "Legionella risk reduction protocols",
-        "Confined-space-entry certified technicians",
-        "Chemical descaling with corrosion-safe formulations",
-        "Minimal downtime — night-shift and weekend scheduling"
-      ]
-    },
-    "facade-cleaning": {
-      "name": "Facade & High-Rise Cleaning",
-      "short": "Glass, stone, and composite facades restored to new.",
-      "tagline": "Elevation-Grade Shine",
-      "overview": "From glass towers to stone-clad heritage structures — our rope-access and aerial-lift teams restore facade clarity while respecting architectural finishes and safety norms.",
-      "features": [
-        "IRATA-trained rope-access technicians",
-        "Cherry-picker and BMU operations for high-rises",
-        "Biodegradable, surface-specific cleaning agents",
-        "Glass, ACP, stone, granite and stucco expertise",
-        "Public liability insurance and zero-incident safety protocol"
-      ]
-    },
-    "deep-cleaning": {
-      "name": "Deep Cleaning for Homes & Offices",
-      "short": "Every inch thoughtfully scrubbed, sanitised and renewed.",
-      "tagline": "A Spotless Shine, Every Time",
-      "overview": "Professional deep cleaning for flats, bungalows and offices — from kitchen degreasing to upholstery care, we use eco-friendly agents and modern equipment.",
-      "features": [
-        "Comprehensive dusting, vacuuming and sanitisation",
-        "Kitchen and pantry degreasing with food-safe products",
-        "Washroom scrubbing and disinfection",
-        "Upholstery, sofa, carpet and mattress shampooing",
-        "Non-toxic, pet-safe eco-friendly cleaning agents"
+        "High-pressure jet cleaning of fills and louvers",
+        "Basin sludge removal and full descaling",
+        "Algae and biofilm removal — Legionella risk control",
+        "Confined-space-entry trained technicians",
+        "Night-shift and weekend scheduling to avoid downtime",
+        "Industrial process tank cleaning also offered"
       ]
     },
     "solar-water-heater": {
-      "name": "Solar Water Heater Service",
-      "short": "Reliable servicing and repairs for all solar systems.",
-      "tagline": "Reliable & Eco-Friendly Solutions",
-      "overview": "Keep your solar water heater running at peak efficiency — we service and repair all brands and configurations, on rooftops across the city.",
+      "name": "Solar Water Heater Service & Repair",
+      "short": "Servicing, descaling, tube replacement and full repair for all rooftop solar water heater systems. AMCs for societies and bungalows.",
+      "tagline": "Hot water all year",
+      "overview": "Solar water heaters lose efficiency when tubes get scaled or broken. We service all brands and configurations — descale the tank, replace broken tubes, fix leaks, repair controllers. Annual Maintenance Contracts (AMC) available.",
       "features": [
-        "Evacuated tube replacement and realignment",
+        "Evacuated tube cleaning and replacement",
         "Tank descaling and inner-liner inspection",
         "Valve, sensor and controller repair",
         "Leak detection and plumbing fixes",
-        "Annual maintenance contracts available"
+        "Annual maintenance contracts (AMC) available",
+        "All major brands serviced"
       ]
     }
   },
   "whyUs": {
-    "eyebrow": "WHY CHOOSE US",
-    "title": "Quiet expertise. Loud results.",
-    "subtitle": "Fifteen years of practice, one standard of care.",
+    "eyebrow": "Why us",
+    "title": "Simple work, done right.",
+    "subtitle": "Ten years of tank cleaning in Pune. Same crew. Same standards. Every job.",
     "pointsTitle": [
-      "ISO 9001:2015 certified",
-      "Trained & insured crew",
-      "Eco-friendly chemistry",
-      "Transparent reporting"
+      "ISO 9001:2015 Certified",
+      "Trained, Insured Crew",
+      "Photos Before & After",
+      "Open All 7 Days"
     ],
     "pointsBody": [
-      "A quality management system audited against international benchmarks — the same standard expected of hospitals and food processors.",
-      "Every technician carries safety training, confined-space certification and public liability cover. No contractors, no surprises.",
-      "We specify biodegradable and food-grade agents wherever humans, pets or potable water are involved — without compromising on result.",
-      "Photo and video documentation, water-quality test results, and a digital service report — delivered to your inbox within 24 hours."
+      "Our quality system is audited against international standards — the same expected of hospitals and food processors.",
+      "Every operator has confined-space safety training, PPE and is covered by public liability insurance. No outside contractors.",
+      "You get before/after photos and a digital service certificate within 24 hours of every job — useful for society audits.",
+      "Monday to Sunday, 9 AM to 9 PM. Emergency cleanups handled the same day where possible."
     ]
   },
   "process": {
-    "eyebrow": "OUR PROCESS",
+    "eyebrow": "How it works",
     "title": "Four steps. No surprises.",
+    "subtitle": "From the first call to the final report — here's exactly how we work.",
     "steps": [
       {
-        "n": "01",
-        "title": "Inspect",
-        "body": "We visit your site, assess the surface or system, and quote in writing — no call-out fee."
+        "n": "1",
+        "title": "Call us",
+        "body": "Tell us what you need cleaned. We visit your site free of charge to inspect."
       },
       {
-        "n": "02",
-        "title": "Plan",
-        "body": "A scheduled slot that minimises disruption, with clear safety and access arrangements."
+        "n": "2",
+        "title": "Get a quote",
+        "body": "Written quote within a day. No hidden charges, no last-minute surprises."
       },
       {
-        "n": "03",
-        "title": "Execute",
-        "body": "Trained crew, specified chemistry, documented controls. We bring everything we need."
+        "n": "3",
+        "title": "We clean",
+        "body": "Trained crew arrives on the scheduled day. Full PPE. We finish in one visit."
       },
       {
-        "n": "04",
-        "title": "Report",
-        "body": "Photo evidence, water-quality results where relevant, and a digital service certificate."
+        "n": "4",
+        "title": "Get a report",
+        "body": "Before/after photos and a service certificate by WhatsApp or email."
       }
     ]
   },
   "cta": {
-    "title": "Let's make it spotless.",
-    "subtitle": "Free site inspection, honest quote, work scheduled at your convenience.",
-    "button": "Request a Free Inspection"
+    "title": "Need a tank cleaned?",
+    "subtitle": "Free site visit. Honest quote. Done at your convenience.",
+    "button": "Tap to call"
   },
   "contact": {
     "title": "Get in touch",
-    "subtitle": "Tell us about your space — we'll reply within one business day.",
+    "subtitle": "Tell us about your tank. We'll get back the same day.",
     "name": "Your name",
-    "email": "Email",
-    "phone": "Phone",
-    "service": "Service of interest",
-    "message": "Tell us about your requirement",
-    "submit": "Send message",
+    "email": "Email (optional)",
+    "phone": "Phone number",
+    "service": "Which service?",
+    "message": "Tell us about your tank",
+    "submit": "Send via WhatsApp",
     "sending": "Sending…",
-    "success": "Thank you — we'll be in touch within one business day.",
-    "error": "Something went wrong. Please call us or try again.",
-    "office": "Office Address",
-    "contactDetails": "Contact Details",
-    "hours": "Mon–Sat · 9:00 AM – 7:00 PM"
+    "success": "Thanks — message sent!",
+    "error": "Something went wrong. Please call us directly.",
+    "office": "Office",
+    "contactDetails": "Call or WhatsApp",
+    "hours": "Open all 7 days · 9 AM – 9 PM",
+    "directions": "Get Directions",
+    "whatsapp": "Opens in WhatsApp"
   },
   "footer": {
-    "tagline": "Professional tank, facade and deep-cleaning services. ISO 9001:2015 certified.",
+    "tagline": "STP, water tank, cooling tower and solar heater cleaning. ISO 9001:2015 certified. Serving Pune for over 10 years.",
     "services": "Services",
     "company": "Company",
     "about": "About us",
     "blog": "Blog",
     "contact": "Contact",
     "legal": "Legal",
-    "privacy": "Privacy policy",
-    "terms": "Terms of service",
+    "privacy": "Privacy",
+    "terms": "Terms",
     "copyright": "© 2026 Shree Chintamani Services. All rights reserved.",
-    "certification": "ISO 9001:2015 · QMS230893"
+    "certification": "ISO 9001:2015 · QMS230893",
+    "serviceAreasTitle": "Service Areas"
   },
   "about": {
-    "eyebrow": "OUR STORY",
-    "title": "Built on trust, measured in clarity.",
-    "intro": "Shree Chintamani Services was founded on a simple belief: clean water and clean spaces are fundamental rights, not luxuries. Today, we are a team of trained professionals serving homes, commercial buildings, and industrial facilities across Pune and the wider Maharashtra region.",
-    "missionTitle": "Our Mission",
-    "missionBody": "To provide reliable, eco-friendly cleaning solutions that ensure safety, hygiene, and customer satisfaction — contributing to a cleaner, healthier future.",
-    "visionTitle": "Our Vision",
-    "visionBody": "To become Maharashtra's most trusted name in professional cleaning — an organisation where every client receives transparent service, every technician is treated with respect, and every job reflects our commitment to quality.",
+    "eyebrow": "About us",
+    "title": "Ten years of cleaning Pune's tanks.",
+    "intro": "Shree Chintamani Services started in 2015 with one truck and one promise: clean tanks properly, not just rinse them. Today our team handles STPs, water tanks, cooling towers and solar heaters across Pune, Pimpri-Chinchwad and the surrounding areas. Most of our work comes through word-of-mouth — and that's how we like it.",
+    "missionTitle": "Mission",
+    "missionBody": "Make professional tank cleaning honest, affordable and properly done — for every customer, whether it's a one-tank household or a ten-tank factory.",
+    "visionTitle": "Vision",
+    "visionBody": "Be the most trusted name for STP and tank cleaning in Pune. Every customer gets a straight answer. Every job is finished properly.",
     "valuesTitle": "What guides us",
     "values": [
-      { "title": "Integrity", "body": "Honest quotes, honest work, honest reports." },
-      { "title": "Excellence", "body": "Trained crew, specified chemistry, documented controls." },
-      { "title": "Responsibility", "body": "Eco-friendly agents, fair wages, safe practices." },
-      { "title": "Care", "body": "We treat your property the way we'd treat our own." }
+      { "title": "Honest", "body": "Honest quotes, honest work, honest reports. No hidden charges." },
+      { "title": "Safe", "body": "PPE on every job. Confined-space safety. Insurance in place." },
+      { "title": "Careful", "body": "We treat your property and tank the way we'd treat our own." },
+      { "title": "On time", "body": "If we say Tuesday, we come Tuesday." }
     ]
   },
   "blog": {
-    "eyebrow": "JOURNAL",
-    "title": "Guides, tips, and industry notes.",
-    "subtitle": "Practical reading on tank hygiene, facade care, and cleaning best practices.",
+    "eyebrow": "Blog",
+    "title": "Tank cleaning notes from the field.",
+    "subtitle": "Practical advice on STP, water tank, cooling tower and solar heater care — for facility managers and society secretaries.",
     "comingSoon": "Articles coming soon.",
-    "comingSoonBody": "Our blog will go live once the Sanity CMS is connected. See the README for setup instructions.",
+    "comingSoonBody": "We are writing practical guides. Check back in a few weeks.",
     "readMore": "Read article",
-    "backToBlog": "Back to all articles"
+    "backToBlog": "Back to all articles",
+    "minRead": "min read"
   }
 }

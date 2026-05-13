@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { getDictionary, type Locale } from '@/i18n/config';
 import CTASection from '@/components/CTASection';
 import { SITE } from '@/lib/utils';
+import { Award, ShieldCheck, MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({
@@ -28,92 +30,113 @@ export default async function AboutPage({
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pb-20 pt-20 md:pb-28 md:pt-28">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-radial from-aqua-100/60 to-transparent blur-3xl" />
-        </div>
+      <section className="relative water-bg pb-14 pt-12 md:pb-20 md:pt-16">
         <div className="container-x">
-          <div className="max-w-4xl">
-            <span className="eyebrow">{about.eyebrow}</span>
-            <h1 className="display-xl mt-6 text-balance">{about.title}</h1>
-            <p className="body-lg mt-8 max-w-2xl text-pretty">{about.intro}</p>
+          <div className="max-w-3xl">
+            <div className="eyebrow">{about.eyebrow}</div>
+            <h1 className="display-xl mt-3 text-balance">{about.title}</h1>
+            <p className="body-lg mt-6 max-w-2xl text-pretty">{about.intro}</p>
+          </div>
+
+          {/* Quick stats band */}
+          <div className="mt-10 grid grid-cols-3 gap-3 md:mt-12 md:gap-5">
+            <div className="rounded-2xl bg-white p-5 ring-1 ring-aqua-100 md:p-6">
+              <Award className="h-5 w-5 text-aqua-600" strokeWidth={2} />
+              <div className="mt-3 font-display text-2xl font-extrabold text-ink-900 md:text-3xl">
+                {SITE.yearsInService}
+              </div>
+              <div className="mt-1 text-xs text-ink-500 md:text-sm">Years of work</div>
+            </div>
+            <div className="rounded-2xl bg-white p-5 ring-1 ring-aqua-100 md:p-6">
+              <ShieldCheck className="h-5 w-5 text-aqua-600" strokeWidth={2} />
+              <div className="mt-3 font-display text-2xl font-extrabold text-ink-900 md:text-3xl">
+                ISO
+              </div>
+              <div className="mt-1 text-xs text-ink-500 md:text-sm">9001:2015</div>
+            </div>
+            <div className="rounded-2xl bg-white p-5 ring-1 ring-aqua-100 md:p-6">
+              <MapPin className="h-5 w-5 text-aqua-600" strokeWidth={2} />
+              <div className="mt-3 font-display text-2xl font-extrabold text-ink-900 md:text-3xl">
+                {SITE.serviceAreas.length}+
+              </div>
+              <div className="mt-1 text-xs text-ink-500 md:text-sm">Areas served</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Mission + Vision split */}
-      <section className="py-16 md:py-24">
-        <div className="container-x grid gap-6 md:grid-cols-2 md:gap-8">
-          {[
-            { title: about.missionTitle, body: about.missionBody, theme: 'light' as const },
-            { title: about.visionTitle, body: about.visionBody, theme: 'dark' as const },
-          ].map((card, i) => (
-            <div
-              key={i}
-              className={
-                card.theme === 'dark'
-                  ? 'rounded-3xl bg-ink-950 p-10 text-white md:p-14'
-                  : 'rounded-3xl border border-ink-100 bg-aqua-50/50 p-10 text-ink-900 md:p-14'
-              }
-            >
-              <div
-                className={
-                  'mb-4 text-[11px] font-medium uppercase tracking-[0.22em] ' +
-                  (card.theme === 'dark' ? 'text-aqua-300' : 'text-aqua-700')
-                }
-              >
-                {card.title}
-              </div>
-              <h2
-                className={
-                  'font-display leading-[1.1] text-balance text-[clamp(2rem,3.5vw,3rem)] ' +
-                  (card.theme === 'dark' ? 'text-white' : 'text-ink-900')
-                }
-              >
-                {card.body}
-              </h2>
+      {/* Mission + Vision */}
+      <section className="py-14 md:py-20">
+        <div className="container-x grid gap-5 md:grid-cols-2 md:gap-6">
+          <div className="rounded-3xl bg-aqua-50 p-7 ring-1 ring-aqua-100 md:p-10">
+            <div className="eyebrow">{about.missionTitle}</div>
+            <p className="mt-4 font-display text-xl font-bold leading-snug text-ink-900 md:text-2xl">
+              {about.missionBody}
+            </p>
+          </div>
+          <div className="rounded-3xl bg-gradient-to-br from-aqua-700 via-aqua-800 to-aqua-900 p-7 text-white md:p-10">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-aqua-200">
+              {about.visionTitle}
             </div>
-          ))}
+            <p className="mt-4 font-display text-xl font-bold leading-snug md:text-2xl">
+              {about.visionBody}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-16 md:py-24">
-        <div className="container-x">
-          <div className="mb-12 max-w-2xl">
+      {/* Values - simpler cards */}
+      <section className="relative water-bg-deep py-14 md:py-20">
+        {/* Wave divider at top */}
+        <div className="absolute inset-x-0 top-0">
+          <svg
+            viewBox="0 0 1440 60"
+            preserveAspectRatio="none"
+            className="h-12 w-full md:h-16"
+            aria-hidden
+          >
+            <path d="M0,0 L0,30 Q360,55 720,30 T1440,30 L1440,0 Z" fill="#ffffff" />
+          </svg>
+        </div>
+        <div className="container-x relative">
+          <div className="mb-10 max-w-xl">
             <h2 className="display-lg text-balance">{about.valuesTitle}</h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-4">
             {about.values.map((v: { title: string; body: string }, i: number) => (
               <div
                 key={i}
-                className="group rounded-2xl border border-ink-100 bg-white p-8 transition-colors hover:border-ink-900"
+                className="rounded-2xl bg-white p-6 ring-1 ring-aqua-100 transition-all hover:shadow-md"
               >
-                <div className="font-display text-3xl text-aqua-700">0{i + 1}</div>
-                <h3 className="mt-4 font-display text-2xl text-ink-900">{v.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-500">{v.body}</p>
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-aqua-700 text-white">
+                  <span className="font-display text-base font-extrabold">0{i + 1}</span>
+                </div>
+                <h3 className="mt-4 font-display text-lg font-extrabold text-ink-900 md:text-xl">
+                  {v.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-600">{v.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Credentials band */}
-      <section className="bg-ink-50 py-16 md:py-24">
+      {/* Credentials */}
+      <section className="bg-white py-14 md:py-20">
         <div className="container-x">
-          <div className="grid gap-10 md:grid-cols-3">
-            <div>
-              <div className="font-display text-5xl text-ink-900">ISO</div>
-              <div className="mt-2 text-sm text-ink-500">9001:2015 · QMS230893</div>
+          <div className="grid gap-6 md:grid-cols-3 md:gap-8">
+            <div className="rounded-2xl bg-aqua-50 p-7 ring-1 ring-aqua-100">
+              <div className="font-display text-4xl font-extrabold text-aqua-800">ISO</div>
+              <div className="mt-2 text-sm text-ink-600">9001:2015 · QMS230893</div>
             </div>
-            <div>
-              <div className="font-display text-5xl text-ink-900">GST</div>
-              <div className="mt-2 text-sm text-ink-500 break-all">{SITE.gstin}</div>
+            <div className="rounded-2xl bg-aqua-50 p-7 ring-1 ring-aqua-100">
+              <div className="font-display text-4xl font-extrabold text-aqua-800">GST</div>
+              <div className="mt-2 break-all text-sm text-ink-600">{SITE.gstin}</div>
             </div>
-            <div>
-              <div className="font-display text-5xl text-ink-900">Pune</div>
-              <div className="mt-2 text-sm text-ink-500">
-                Serving Pimpri-Chinchwad and wider Maharashtra
+            <div className="rounded-2xl bg-aqua-50 p-7 ring-1 ring-aqua-100">
+              <div className="font-display text-4xl font-extrabold text-aqua-800">Pune</div>
+              <div className="mt-2 text-sm text-ink-600">
+                Pimpri-Chinchwad & wider Maharashtra
               </div>
             </div>
           </div>

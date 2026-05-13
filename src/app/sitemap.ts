@@ -1,12 +1,13 @@
-import type { MetadataRoute } from 'next';
-import { i18n } from '@/i18n/locales';
-import { services } from '@/data/services';
-import { getAllPosts } from '@/lib/sanity';
-import { SITE } from '@/lib/utils';
+import type { MetadataRoute } from "next";
+import { i18n } from "@/i18n/locales";
+import { services } from "@/data/services";
+import { getAllPosts } from "@/lib/posts";
+import { SITE } from "@/lib/utils";
+export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = SITE.url.replace(/\/$/, '');
-  const routes = ['', '/about', '/services', '/blog', '/contact'];
+  const base = SITE.url.replace(/\/$/, "");
+  const routes = ["", "/about", "/services", "/blog", "/contact"];
   const posts = await getAllPosts();
 
   const entries: MetadataRoute.Sitemap = [];
@@ -16,15 +17,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       entries.push({
         url: `${base}/${locale}${path}`,
         lastModified: new Date(),
-        changeFrequency: path === '' ? 'weekly' : 'monthly',
-        priority: path === '' ? 1 : 0.7,
+        changeFrequency: path === "" ? "weekly" : "monthly",
+        priority: path === "" ? 1 : 0.7,
       });
     }
     for (const s of services) {
       entries.push({
         url: `${base}/${locale}/services/${s.slug}`,
         lastModified: new Date(),
-        changeFrequency: 'monthly',
+        changeFrequency: "monthly",
         priority: 0.8,
       });
     }
@@ -32,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       entries.push({
         url: `${base}/${locale}/blog/${p.slug}`,
         lastModified: new Date(p.publishedAt),
-        changeFrequency: 'yearly',
+        changeFrequency: "yearly",
         priority: 0.6,
       });
     }

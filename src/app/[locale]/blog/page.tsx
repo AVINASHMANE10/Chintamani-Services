@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight, Clock } from 'lucide-react';
 import { getDictionary, type Locale } from '@/i18n/config';
-import { getAllPosts } from '@/lib/sanity';
+import { getAllPosts } from '@/lib/posts';
 import CTASection from '@/components/CTASection';
 import type { Metadata } from 'next';
 
@@ -30,15 +30,12 @@ export default async function BlogIndex({
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pb-12 pt-16 md:pb-20 md:pt-24">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-radial from-aqua-100/50 to-transparent blur-3xl" />
-        </div>
+      <section className="relative water-bg pb-10 pt-12 md:pb-14 md:pt-16">
         <div className="container-x">
-          <div className="max-w-4xl">
-            <span className="eyebrow">{dict.blog.eyebrow}</span>
-            <h1 className="display-xl mt-6 text-balance">{dict.blog.title}</h1>
-            <p className="body-lg mt-8 max-w-2xl text-pretty">{dict.blog.subtitle}</p>
+          <div className="max-w-3xl">
+            <div className="eyebrow">{dict.blog.eyebrow}</div>
+            <h1 className="display-xl mt-3 text-balance">{dict.blog.title}</h1>
+            <p className="body-lg mt-5 max-w-2xl text-pretty">{dict.blog.subtitle}</p>
           </div>
         </div>
       </section>
