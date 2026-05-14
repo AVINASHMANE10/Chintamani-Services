@@ -9,10 +9,7 @@
   },
   "carousel": {
     "badge": "ISO 9001:2015 · Trusted since 2015",
-    "callNow": "Call Now",
-    "whatsapp": "WhatsApp",
-    "viewService": "Read More",
-    "hoursShort": "Open all 7 days · 9 AM – 9 PM"
+    "learnMore": "Learn more"
   },
   "intro": {
     "tagline": "Pimpri-Chinchwad, Pune",
@@ -178,9 +175,18 @@
     "visionBody": "Be the most trusted name for STP and tank cleaning in Pune. Every customer gets a straight answer. Every job is finished properly.",
     "valuesTitle": "What guides us",
     "values": [
-      { "title": "Honest", "body": "Honest quotes, honest work, honest reports. No hidden charges." },
-      { "title": "Safe", "body": "PPE on every job. Confined-space safety. Insurance in place." },
-      { "title": "Careful", "body": "We treat your property and tank the way we'd treat our own." },
+      {
+        "title": "Honest",
+        "body": "Honest quotes, honest work, honest reports. No hidden charges."
+      },
+      {
+        "title": "Safe",
+        "body": "PPE on every job. Confined-space safety. Insurance in place."
+      },
+      {
+        "title": "Careful",
+        "body": "We treat your property and tank the way we'd treat our own."
+      },
       { "title": "On time", "body": "If we say Tuesday, we come Tuesday." }
     ]
   },
