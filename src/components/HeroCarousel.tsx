@@ -1,35 +1,22 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useCallback } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'motion/react';
-import {
-  ChevronLeft,
-  ChevronRight,
-  Phone,
-  MessageCircle,
-  ShieldCheck,
-  Clock,
-} from 'lucide-react';
-import { services } from '@/data/services';
-import type { Locale } from '@/i18n/locales';
-import { cn, SITE } from '@/lib/utils';
+import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "motion/react";
+import { ChevronLeft, ChevronRight, Check, ShieldCheck } from "lucide-react";
+import { services } from "@/data/services";
+import type { Locale } from "@/i18n/locales";
+import { cn } from "@/lib/utils";
 
 type CarouselDict = {
   badge: string;
-  callNow: string;
-  whatsapp: string;
-  viewService: string;
-  hoursShort: string;
+  learnMore: string;
 };
 
-type ServicesMap = Record<
-  string,
-  { name: string; short: string }
->;
+type ServicesMap = Record<string, { name: string; short: string }>;
 
-const AUTOPLAY_MS = 5500;
+const AUTOPLAY_MS = 6000;
 
 export default function HeroCarousel({
   locale,
@@ -40,18 +27,16 @@ export default function HeroCarousel({
   dict: CarouselDict;
   servicesDict: ServicesMap;
 }) {
-  const [index, setIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
   const goNext = useCallback(() => {
-    setIndex((i) => (i + 1) % services.length);
+    setCurrentIndex((i) => (i + 1) % services.length);
   }, []);
 
   const goPrev = useCallback(() => {
-    setIndex((i) => (i - 1 + services.length) % services.length);
+    setCurrentIndex((i) => (i - 1 + services.length) % services.length);
   }, []);
-
-  const goTo = useCallback((i: number) => setIndex(i), []);
 
   useEffect(() => {
     if (paused) return;
@@ -59,170 +44,131 @@ export default function HeroCarousel({
     return () => clearInterval(id);
   }, [paused, goNext]);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') goNext();
-      if (e.key === 'ArrowLeft') goPrev();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [goNext, goPrev]);
+  // Get 3 cards for desktop
+  const getVisibleCards = () => {
+    const cards = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (currentIndex + i) % services.length;
+      cards.push(services[index]);
+    }
+    return cards;
+  };
 
-  const active = services[index];
-  const content = servicesDict[active.slug];
-  const ActiveIcon = active.icon;
-  const phone = SITE.phones[0].replace(/\s/g, '');
-  const whatsapp = SITE.whatsapp.replace(/[^\d]/g, '');
+  const visibleCards = getVisibleCards();
+  const currentService = services[currentIndex]; // For mobile single card
+
+  // Feature badges for each service
+  const getFeatures = (slug: string) => {
+    switch (slug) {
+      case "stp-fire-tank-cleaning":
+        return ["Complete desludging", "MPCB compliance", "Expert crew"];
+      case "water-tank-cleaning":
+        return ["Safe & hygienic", "Food-grade clean", "Leak inspection"];
+      case "cooling-tower-cleaning":
+        return ["Fill cleaning", "Energy savings", "Biofilm removal"];
+      case "solar-water-heater":
+        return ["All brands", "Tube replacement", "AMC available"];
+      default:
+        return ["ISO certified", "Trained crew", "10+ years"];
+    }
+  };
 
   return (
     <section
-      className="relative overflow-hidden water-bg"
+      className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 py-8 md:py-16"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={() => setPaused(true)}
     >
-      {/* Floating water droplets in background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[8%] top-[15%] h-3 w-3 rounded-full bg-aqua-300/40 float-slow" />
-        <div className="absolute right-[12%] top-[22%] h-4 w-4 rounded-full bg-aqua-400/40 float-slow" style={{ animationDelay: '1s' }} />
-        <div className="absolute left-[15%] bottom-[25%] h-2 w-2 rounded-full bg-aqua-500/50 float-slow" style={{ animationDelay: '2s' }} />
-        <div className="absolute right-[8%] bottom-[18%] h-3 w-3 rounded-full bg-aqua-300/40 float-slow" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute left-[45%] top-[8%] h-2 w-2 rounded-full bg-aqua-400/50 float-slow" style={{ animationDelay: '1.5s' }} />
+      {/* Top badge */}
+      <div className="container-x relative mb-6 md:mb-8">
+        <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wider text-blue-800 shadow-sm ring-1 ring-blue-200 md:text-sm">
+          <ShieldCheck className="h-4 w-4" strokeWidth={2.5} />
+          {dict.badge}
+        </div>
       </div>
 
-      <div className="container-x relative pt-6 pb-12 md:pt-10 md:pb-20">
-        {/* Top badge row */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 md:mb-8">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-aqua-800 ring-1 ring-aqua-200 backdrop-blur md:px-4 md:text-xs">
-            <ShieldCheck className="h-3.5 w-3.5" strokeWidth={2.5} />
-            {dict.badge}
-          </div>
-          <a
-            href={`tel:${phone}`}
-            className="hidden items-center gap-2 text-sm font-semibold text-aqua-800 hover:text-aqua-900 md:inline-flex"
+      <div className="container-x relative">
+        {/* MOBILE VIEW - Single large card */}
+        <div className="md:hidden">
+          <motion.div
+            key={currentService.slug}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
           >
-            <Phone className="h-4 w-4" strokeWidth={2.5} fill="currentColor" />
-            {SITE.phones[0]}
-          </a>
-        </div>
+            <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-700 shadow-2xl">
+              {/* Service number badge */}
+              <div className="absolute left-4 top-4 z-10 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-base font-extrabold text-blue-600 shadow-lg">
+                {currentService.number}
+              </div>
 
-        {/* Carousel main */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-aqua-900 via-aqua-800 to-ink-900 shadow-2xl shadow-aqua-900/30 md:rounded-[2rem]">
-          {/* Slide */}
-          <div className="relative aspect-[4/5] md:aspect-[16/9] lg:aspect-[16/8]">
-            <AnimatePresence mode="sync" initial={false}>
-              <motion.div
-                key={active.slug}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0"
-              >
+              {/* Image */}
+              <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
-                  src={active.image}
-                  alt={content.name}
+                  src={currentService.image}
+                  alt={servicesDict[currentService.slug].name}
                   fill
-                  sizes="(min-width: 1024px) 1200px, 100vw"
+                  sizes="100vw"
                   className="object-cover object-center"
-                  priority={index === 0}
+                  priority
                 />
-                {/* Dark overlay for legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-aqua-900/95 via-aqua-900/60 to-aqua-900/20 md:bg-gradient-to-r md:from-aqua-900/95 md:via-aqua-900/70 md:to-aqua-900/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent" />
+              </div>
 
-                {/* Water wave SVG overlay at bottom for theme */}
-                <svg
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20 w-full"
-                  viewBox="0 0 1440 80"
-                  preserveAspectRatio="none"
-                  aria-hidden
-                >
-                  <path
-                    d="M0,40 Q360,0 720,40 T1440,40 L1440,80 L0,80 Z"
-                    fill="rgba(255,255,255,0.08)"
-                  />
-                  <path
-                    d="M0,55 Q360,15 720,55 T1440,55 L1440,80 L0,80 Z"
-                    fill="rgba(255,255,255,0.05)"
-                  />
-                </svg>
-              </motion.div>
-            </AnimatePresence>
+              {/* Content */}
+              <div className="bg-white p-6">
+                {/* Icon */}
+                <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+                  <currentService.icon className="h-6 w-6" strokeWidth={2} />
+                </div>
 
-            {/* Slide content */}
-            <div className="absolute inset-0 z-10 flex items-end md:items-center">
-              <div className="w-full px-5 py-7 md:px-10 md:py-10 lg:px-16 lg:py-14">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={active.slug + '-text'}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="max-w-2xl text-white"
-                  >
-                    {/* Icon + service number */}
-                    <div className="mb-4 inline-flex items-center gap-3">
-                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-aqua-200 ring-1 ring-white/20 backdrop-blur md:h-12 md:w-12">
-                        <ActiveIcon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={2} />
+                {/* Service name */}
+                <h3 className="mb-2 font-display text-xl font-extrabold leading-tight text-blue-900">
+                  {servicesDict[currentService.slug].name}
+                </h3>
+
+                {/* Description */}
+                <p className="mb-4 text-sm leading-relaxed text-gray-600">
+                  {servicesDict[currentService.slug].short}
+                </p>
+
+                {/* Features */}
+                <div className="mb-5 grid grid-cols-1 gap-2">
+                  {getFeatures(currentService.slug).map((feature, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 text-sm text-gray-700"
+                    >
+                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100">
+                        <Check
+                          className="h-3.5 w-3.5 text-blue-600"
+                          strokeWidth={3}
+                        />
                       </div>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-aqua-200 md:text-xs">
-                        {active.number} / 0{services.length}
-                      </span>
+                      <span className="font-medium">{feature}</span>
                     </div>
+                  ))}
+                </div>
 
-                    {/* Title - bold sans, no italics */}
-                    <h1 className="font-display text-[clamp(1.75rem,4.5vw,3.5rem)] font-extrabold leading-[1.05] tracking-tight">
-                      {content.name}
-                    </h1>
-
-                    {/* Short description */}
-                    <p className="mt-4 max-w-xl text-base text-white/85 md:mt-5 md:text-lg">
-                      {content.short}
-                    </p>
-
-                    {/* CTAs */}
-                    <div className="mt-6 flex flex-wrap gap-2.5 md:mt-8">
-                      <a
-                        href={`tel:${phone}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-aqua-900 transition-all hover:scale-[1.02] hover:bg-aqua-50 md:px-6 md:py-3.5 md:text-base"
-                      >
-                        <Phone className="h-4 w-4" strokeWidth={2.5} fill="currentColor" />
-                        {dict.callNow}
-                      </a>
-                      <a
-                        href={`https://wa.me/${whatsapp}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:bg-emerald-600 md:px-6 md:py-3.5 md:text-base"
-                      >
-                        <MessageCircle className="h-4 w-4" strokeWidth={2.5} fill="currentColor" />
-                        {dict.whatsapp}
-                      </a>
-                      <Link
-                        href={`/${locale}/services/${active.slug}`}
-                        className="inline-flex items-center gap-2 rounded-full border-2 border-white/40 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 md:px-6 md:py-3.5 md:text-base"
-                      >
-                        {dict.viewService}
-                      </Link>
-                    </div>
-
-                    {/* Hours mini-info */}
-                    <div className="mt-5 inline-flex items-center gap-2 text-xs text-white/70 md:text-sm">
-                      <Clock className="h-3.5 w-3.5" strokeWidth={2} />
-                      {dict.hoursShort}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+                {/* CTA */}
+                <Link
+                  href={`/${locale}/services/${currentService.slug}`}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/30 hover:bg-blue-700"
+                >
+                  {dict.learnMore}
+                </Link>
               </div>
             </div>
+          </motion.div>
 
-            {/* Side arrows - desktop only */}
+          {/* Mobile navigation arrows */}
+          <div className="mt-4 flex items-center justify-center gap-4">
             <button
               type="button"
               onClick={goPrev}
               aria-label="Previous"
-              className="absolute left-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition-all hover:bg-white/25 lg:flex"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-blue-700 shadow-md transition-all hover:bg-blue-50 active:scale-95"
             >
               <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
             </button>
@@ -230,66 +176,168 @@ export default function HeroCarousel({
               type="button"
               onClick={goNext}
               aria-label="Next"
-              className="absolute right-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition-all hover:bg-white/25 lg:flex"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-blue-700 shadow-md transition-all hover:bg-blue-50 active:scale-95"
             >
               <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
             </button>
-
-            {/* Progress bar */}
-            <div className="absolute inset-x-0 bottom-0 z-20 h-1 bg-white/10">
-              <motion.div
-                key={active.slug + '-bar'}
-                initial={{ width: '0%' }}
-                animate={{ width: paused ? '0%' : '100%' }}
-                transition={{
-                  duration: paused ? 0.3 : AUTOPLAY_MS / 1000,
-                  ease: 'linear',
-                }}
-                className="h-full bg-aqua-300"
-              />
-            </div>
           </div>
         </div>
 
-        {/* Slide indicators / dots */}
-        <div className="mt-6 flex items-center justify-center gap-3 md:mt-8">
+        {/* DESKTOP VIEW - 3 cards */}
+        <div className="relative hidden md:block">
+          <div className="grid grid-cols-3 gap-5">
+            {visibleCards.map((service, idx) => {
+              const content = servicesDict[service.slug];
+              const ServiceIcon = service.icon;
+              const features = getFeatures(service.slug);
+              const isCenter = idx === 1;
+
+              return (
+                <motion.div
+                  key={`${service.slug}-${currentIndex}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="relative"
+                >
+                  <div
+                    className={cn(
+                      "relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300",
+                      isCenter
+                        ? "scale-105 ring-2 ring-blue-500"
+                        : "ring-1 ring-blue-200 hover:shadow-2xl",
+                    )}
+                  >
+                    {isCenter && (
+                      <div className="absolute right-4 top-4 z-10 rounded-full bg-blue-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
+                        Featured
+                      </div>
+                    )}
+
+                    <div className="absolute left-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-sm font-extrabold text-white shadow-md">
+                      {service.number}
+                    </div>
+
+                    <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
+                      <Image
+                        src={service.image}
+                        alt={content.name}
+                        fill
+                        sizes="33vw"
+                        className="object-cover object-center"
+                        priority={idx === 0}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent" />
+                    </div>
+
+                    <div className="p-5">
+                      <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+                        <ServiceIcon className="h-5 w-5" strokeWidth={2} />
+                      </div>
+
+                      <h3 className="mb-2 font-display text-lg font-extrabold leading-tight text-blue-900 xl:text-xl">
+                        {content.name}
+                      </h3>
+
+                      <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-600">
+                        {content.short}
+                      </p>
+
+                      <div className="mb-4 space-y-2">
+                        {features.map((feature, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center gap-2 text-xs text-gray-700"
+                          >
+                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100">
+                              <Check
+                                className="h-3 w-3 text-blue-600"
+                                strokeWidth={3}
+                              />
+                            </div>
+                            <span className="font-medium">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <Link
+                        href={`/${locale}/services/${service.slug}`}
+                        className={cn(
+                          "inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-bold transition-all",
+                          isCenter
+                            ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 hover:bg-blue-700"
+                            : "bg-blue-100 text-blue-700 hover:bg-blue-200",
+                        )}
+                      >
+                        {dict.learnMore}
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Desktop navigation arrows */}
+          <button
+            type="button"
+            onClick={goPrev}
+            aria-label="Previous"
+            className="absolute -left-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-blue-700 shadow-xl transition-all hover:bg-blue-50 lg:flex"
+          >
+            <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="Next"
+            className="absolute -right-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-blue-700 shadow-xl transition-all hover:bg-blue-50 lg:flex"
+          >
+            <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
+          </button>
+        </div>
+
+        {/* Indicators (shared for both mobile and desktop) */}
+        <div className="mt-6 flex items-center justify-center gap-2 md:mt-8">
           {services.map((s, i) => {
-            const isActive = i === index;
+            const isActive = i === currentIndex;
             return (
               <button
                 key={s.slug}
                 type="button"
-                onClick={() => goTo(i)}
-                aria-label={`Go to slide ${i + 1}`}
-                className="group relative h-10 px-1"
+                onClick={() => setCurrentIndex(i)}
+                aria-label={`Go to ${s.slug}`}
+                className="group relative h-8"
               >
                 <div
                   className={cn(
-                    'h-2.5 rounded-full transition-all duration-500',
+                    "h-2 rounded-full transition-all duration-300",
                     isActive
-                      ? 'w-12 bg-aqua-700'
-                      : 'w-2.5 bg-aqua-200 group-hover:bg-aqua-300'
+                      ? "w-8 bg-blue-700"
+                      : "w-2 bg-blue-300 group-hover:bg-blue-400",
                   )}
                 />
               </button>
             );
           })}
         </div>
-      </div>
 
-      {/* Water wave divider at bottom */}
-      <svg
-        className="block w-full"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        height="80"
-        aria-hidden
-      >
-        <path
-          d="M0,40 Q360,0 720,40 T1440,40 L1440,80 L0,80 Z"
-          fill="#ffffff"
-        />
-      </svg>
+        {/* Progress bar */}
+        <div className="mt-4 md:mt-6">
+          <div className="mx-auto h-1 max-w-md overflow-hidden rounded-full bg-blue-200">
+            <motion.div
+              key={currentIndex}
+              initial={{ width: "0%" }}
+              animate={{ width: paused ? "0%" : "100%" }}
+              transition={{
+                duration: paused ? 0.3 : AUTOPLAY_MS / 1000,
+                ease: "linear",
+              }}
+              className="h-full bg-blue-700"
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
